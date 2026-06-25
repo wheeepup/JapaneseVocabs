@@ -143,28 +143,6 @@
     <input id="chat-input" placeholder="Type a message...">
     <button onclick="sendMessage()">Send</button>
     </div>
-
-  <!-- 🔹 Chat Script -->
-  <script>
-    // Connect to your Render backend
-
-    function sendMessage() {
-      const msg = document.getElementById("chat-input").value;
-      if (msg.trim() !== "") {
-        socket.emit("chat message", msg);
-        document.getElementById("chat-input").value = "";
-      }
-    }
-
-    socket.on("chat message", (data) => {
-      const chatBox = document.getElementById("chat-box");
-      const bubble = document.createElement("div");
-      bubble.textContent = data.msg;
-      bubble.className = data.isSelf ? "self" : "other";
-      chatBox.appendChild(bubble);
-      chatBox.scrollTop = chatBox.scrollHeight; // auto-scroll
-    });
-  </script>
     
 </body>
 </html>

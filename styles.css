@@ -298,7 +298,7 @@ header h1 {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #1e90ff; /* bright blue accent */
+  background: #1e90ff; /* blue accent */
   color: white;
   font-size: 24px;
   padding: 15px;
@@ -308,14 +308,26 @@ header h1 {
   transition: transform 0.2s ease, background 0.3s ease;
   z-index: 1000;
 }
-
 #chat-icon:hover {
   transform: scale(1.1);
-  background: #ff6f61; /* complementary coral accent */
+  background: #ff6f61; /* coral accent */
 }
 
-/* Dark chat box container */
+/* Chat box popup */
 #chat-box-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  max-height: 400px;
+  background: #121212; /* dark background */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 999;
+  color: #f1f1f1;
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.3s ease;
@@ -326,27 +338,24 @@ header h1 {
 }
 .hidden { display: none; }
 
-
 /* Chat messages */
 #chat-box {
   flex: 1;
   padding: 10px;
   overflow-y: auto;
-  background: #1e1e1e; /* slightly lighter dark */
+  background: #1e1e1e;
 }
-
 .self {
   text-align: right;
-  background: #1e90ff; /* blue bubble */
+  background: #1e90ff;
   color: #fff;
   margin: 5px;
   padding: 8px;
   border-radius: 8px;
 }
-
 .other {
   text-align: left;
-  background: #ff6f61; /* coral bubble (complementary) */
+  background: #ff6f61;
   color: #fff;
   margin: 5px;
   padding: 8px;
@@ -359,7 +368,6 @@ header h1 {
   border-top: 1px solid #333;
   background: #121212;
 }
-
 #chat-input {
   border: none;
   background: #1e1e1e;
@@ -367,22 +375,17 @@ header h1 {
   padding: 10px;
   flex: 1;
 }
-
-#chat-input::placeholder {
-  color: #888;
-}
-
+#chat-input::placeholder { color: #888; }
 #chat-box-container button {
   border: none;
-  background: #1e90ff; /* blue accent */
+  background: #1e90ff;
   color: white;
   padding: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
 #chat-box-container button:hover {
-  background: #ff6f61; /* coral accent on hover */
+  background: #ff6f61;
 }
 
 /* Mobile responsive */
@@ -394,5 +397,3 @@ header h1 {
     max-height: 60%;
   }
 }
-
-
