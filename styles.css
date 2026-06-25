@@ -316,32 +316,16 @@ header h1 {
 
 /* Dark chat box container */
 #chat-box-container {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 300px;
-  max-height: 400px;
-  background: #121212; /* deep dark background */
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.7);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 999;
-  color: #f1f1f1;
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.3s ease;
 }
-
 #chat-box-container.show {
   opacity: 1;
   transform: translateY(0);
 }
+.hidden { display: none; }
 
-.hidden {
-  display: none;
-}
 
 /* Chat messages */
 #chat-box {

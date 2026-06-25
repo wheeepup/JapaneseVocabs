@@ -1660,29 +1660,15 @@ socket.on("chat message", (data) => {
 const chatIcon = document.getElementById("chat-icon");
 const chatContainer = document.getElementById("chat-box-container");
 
-// 👉 Desktop hover
-chatIcon.addEventListener("mouseenter", () => {
-  if (window.innerWidth > 768) { // only on desktop
+// 👉 Click to toggle (desktop + mobile)
+chatIcon.addEventListener("click", () => {
+  if (chatContainer.classList.contains("show")) {
+    chatContainer.classList.remove("show");
+    setTimeout(() => chatContainer.classList.add("hidden"), 300);
+  } else {
     chatContainer.classList.remove("hidden");
     setTimeout(() => chatContainer.classList.add("show"), 10);
   }
 });
-chatIcon.addEventListener("mouseleave", () => {
-  if (window.innerWidth > 768) {
-    chatContainer.classList.remove("show");
-    setTimeout(() => chatContainer.classList.add("hidden"), 300);
-  }
-});
 
-// 👉 Mobile tap
-chatIcon.addEventListener("click", () => {
-  if (window.innerWidth <= 768) { // only on mobile
-    if (chatContainer.classList.contains("show")) {
-      chatContainer.classList.remove("show");
-      setTimeout(() => chatContainer.classList.add("hidden"), 300);
-    } else {
-      chatContainer.classList.remove("hidden");
-      setTimeout(() => chatContainer.classList.add("show"), 10);
-    }
-  }
-});
+
