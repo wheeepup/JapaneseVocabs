@@ -1638,7 +1638,7 @@ document.getElementById('search-input').addEventListener('input', function() {
 updateAllVocabularyWords();
 });
 
-const socket = io("hhttps://telegram-chat-backen.onrender.com");
+const socket = io("https://telegram-chat-backen.onrender.com");
 
 function sendMessage() {
   const msg = document.getElementById("chat-input").value;
@@ -1657,16 +1657,32 @@ socket.on("chat message", (data) => {
   chatBox.scrollTop = chatBox.scrollHeight;
 });
 
-// Toggle chatbox with animation
 const chatIcon = document.getElementById("chat-icon");
 const chatContainer = document.getElementById("chat-box-container");
 
-chatIcon.addEventListener("click", () => {
-  if (chatContainer.classList.contains("show")) {
-    chatContainer.classList.remove("show");
-    setTimeout(() => chatContainer.classList.add("hidden"), 300);
-  } else {
+// 👉 Desktop hover
+chatIcon.addEventListener("mouseenter", () => {
+  if (window.innerWidth > 768) { // only on desktop
     chatContainer.classList.remove("hidden");
     setTimeout(() => chatContainer.classList.add("show"), 10);
+  }
+});
+chatIcon.addEventListener("mouseleave", () => {
+  if (window.innerWidth > 768) {
+    chatContainer.classList.remove("show");
+    setTimeout(() => chatContainer.classList.add("hidden"), 300);
+  }
+});
+
+// 👉 Mobile tap
+chatIcon.addEventListener("click", () => {
+  if (window.innerWidth <= 768) { // only on mobile
+    if (chatContainer.classList.contains("show")) {
+      chatContainer.classList.remove("show");
+      setTimeout(() => chatContainer.classList.add("hidden"), 300);
+    } else {
+      chatContainer.classList.remove("hidden");
+      setTimeout(() => chatContainer.classList.add("show"), 10);
+    }
   }
 });
