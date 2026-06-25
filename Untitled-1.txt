@@ -1,0 +1,1314 @@
+// IT Passport Examination — April 2025 (cleaned spacing)
+// Text kept faithful; img included only when a Figure is mentioned.
+// Answers use 0-based indexing: a=0, b=1, c=2, d=3
+
+const questions = [
+  // Q1
+  // Correct: D
+  {
+    q: "As shown in Figure 1, there is a box that generates a single output for two (2) inputs. The input in this box is either 'Agree' or 'Disagree', and the output of 'Agree' is generated only when both inputs are 'Agree', while in other cases the output of 'Disagree' is generated. When three (3) inputs are entered into two (2) boxes as shown in Figure 2, which of the following is the correct description concerning the output?",
+    img: "images/q01.png",
+    choices: [
+      "The output of 'Agree' is generated at all times when one (1) or more inputs are 'Agree'.",
+      "The output of 'Agree' is generated at all times when two (2) or more inputs are 'Agree'.",
+      "The output of 'Disagree' is generated only when two (2) or more inputs are 'Disagree'.",
+      "The output of 'Agree' is generated only when all three (3) inputs are 'Agree'."
+    ],
+    answer: 3
+  },
+
+  // Q2
+  // Correct: D
+  {
+    q: "Which of the following is the binary result of the multiplication of binary 1011 and binary 101?",
+    choices: [
+      "1111",
+      "10000",
+      "101111",
+      "110111"
+    ],
+    answer: 3
+  },
+
+  // Q3
+  // Correct: C
+  {
+    q: "The automation of the inspections performed by a quality controller is considered. By providing as training data 10,000 product images and the results of judgments by the quality controller about whether each product is defective or not, a machine learning model is created to judge whether a product is defective or not. The results of a test judgement by a machine learning model on 100 product images are as shown in the table. When the ratio of the number of images that product is judged to be defective by the machine learning model out of the images that product is judged to be defective by the quality controller is deemed to be the recall rate, what is the recall rate in this test judgement? (Table: Judgment by quality controller Defective: model Defective=5 Not defective=5; Judgment by quality controller Not defective: model Defective=15 Not defective=75)",
+    choices: [
+      "0.05",
+      "0.25",
+      "0.50",
+      "0.80"
+    ],
+    answer: 2
+  },
+
+  // Q4
+  // Correct: D
+  {
+    q: "When a six (6)-sided dice with the numbers 1 to 6 is thrown three (3) times, what is the probability of not getting any 1?",
+    choices: [
+      "1/216",
+      "5/72",
+      "91/216",
+      "125/216"
+    ],
+    answer: 3
+  },
+
+  // Q5
+  // Correct: B
+  {
+    q: "Which of the following is a term for a list of instructions to a computer that are written in a human-readable programming language?",
+    choices: [
+      "PIN code",
+      "Source code",
+      "Binary code",
+      "Character code"
+    ],
+    answer: 1
+  },
+
+  // Q6
+  // Correct: B
+  {
+    q: "The procedure calculateElectricBill receives electricity usage (non-negative) and returns the amount of the electricity bill. Pricing: first 100 units cost $10 per unit. Any units exceeding 100 are charged at $15 per unit. Which piece of code is appropriate to insert into the blank in the program?",
+    choices: [
+      "(units - 100) × 10 + 100 × 15",
+      "(units - 100) × 15 + 100 × 10",
+      "units × 15",
+      "units × 15 + 100 × 10"
+    ],
+    answer: 1
+  },
+
+  // Q7
+  // Correct: D
+  {
+    q: "A program uses loops to display results based on whether the cycle numbers are odd or even. The execution result of the program is shown below: 0+0+0+0  +++++++  2+2+2+2  +++++++  4+4+4+4  +++++++  6+6+6+6. Which of the following is an appropriate combination of pieces of code to be inserted into ___A___ through ___C___ in the program?",
+    choices: [
+      "(i mod 2 ≠ 0) and (j mod 2 ≠ 0) '+' i",
+      "(i mod 2 ≠ 0) and (j mod 2 ≠ 0) i '+'",
+      "(i mod 2 = 0) and (j mod 2 = 0) '+' i",
+      "(i mod 2 = 0) and (j mod 2 = 0) i '+'"
+    ],
+    answer: 3
+  },
+
+  // Q8
+  // Correct: A
+  {
+    q: "In the data structure called a queue that is suitable for performing first-in first-out (FIFO) processing, values are stored in the order of '8', '1', '6', and '3', and then two (2) values are removed consecutively. Which of the following is the last value that is removed?",
+    choices: [
+      "1",
+      "3",
+      "6",
+      "8"
+    ],
+    answer: 0
+  },
+
+  // Q9
+  // Correct: A
+  {
+    q: "As shown in Figure 1, there is a box that generates two (2) numerical values B1 and B2 when two (2) positive integers A1 and A2 are entered. B1 has the same value as A2, and B2 is the remainder of A1 divided by A2. In Figure 2, when two (2) boxes are connected, and 49 is entered as A1 and 11 is entered as A2 in the left box, what is the value of B2 generated from the right box?",
+    img: "images/q09.png",
+    choices: [
+      "1",
+      "2",
+      "4",
+      "5"
+    ],
+    answer: 0
+  },
+
+  // Q10
+  // Correct: B
+  {
+    q: "Which of the following is an appropriate combination of words that are inserted into blanks in the description below concerning the execution sequence of instructions in a computer? In a computer, the instructions are executed in the sequence shown below. (1) Refer to the program counter. (2) ___ the instruction. (3) Set the program counter to the main memory address of the next instruction. (4) ___ the instruction. (5) Execute processing according to the instruction. (6) Return to (1).",
+    choices: [
+      "Decode Read",
+      "Read Decode",
+      "Read Write",
+      "Write Decode"
+    ],
+    answer: 1
+  },
+
+  // Q11
+  // Correct: C
+  {
+    q: "Which of the following is an appropriate description concerning the primary and secondary cache memory that a CPU is equipped with?",
+    choices: [
+      "The primary cache memory has larger capacity than the secondary cache memory.",
+      "The secondary cache memory is slower than the main memory in writing and reading.",
+      "When the CPU reads data, it first accesses the primary cache memory, and then it accesses the secondary cache memory if the data is not available.",
+      "All of the data that is required for a process needs to be present on the primary or secondary cache memory when a program starts."
+    ],
+    answer: 2
+  },
+
+  // Q12
+  // Correct: D
+  {
+    q: "Which of the following is a type of device that is also used as a memory device in IoT devices, and has a lower power consumption and higher impact resistance than an HDD as it has memory media that is made of semiconductors and does not have any moving components?",
+    choices: [
+      "DRM",
+      "DVD",
+      "HDMI",
+      "SSD"
+    ],
+    answer: 3
+  },
+
+  // Q13
+  // Correct: A
+  {
+    q: "Which of the following is the appropriate description concerning the performance of a CPU?",
+    choices: [
+      "Between a 32-bit CPU and a 64-bit CPU, the length of data that a 64-bit CPU can process at once can be greater.",
+      "The smaller the amount of cache memory in a CPU, the higher the processing speed of the CPU.",
+      "In CPUs with the same structure, when the clock frequency is decreased, the processing speed increases.",
+      "Between a dual core CPU and a quad core CPU, a dual core CPU can execute a greater number of processes simultaneously."
+    ],
+    answer: 0
+  },
+
+  // Q14
+  // Correct: A
+  {
+    q: "Which of the following is an appropriate characteristic of a dual system?",
+    choices: [
+      "It provides two (2) sets of systems that perform the same processing and checks the correctness of the processing by comparing the results. If one of the systems fails, it isolates the failed system and continues the processing.",
+      "The same two (2) devices are used, so that the processing capability can be increased to double that of a simplex system.",
+      "It provides a currently used system for performing online processing and also a backup system that is made on standby while performing batch processing. In the event of a failure in the currently used system, it switches to the backup system, starts the online processing on it, and continues the service.",
+      "It connects multiple devices in series and configures them in such a way that the load of each function is distributed among them, so that processing capability is high. But if any one of the devices fails, it becomes unable to provide the service."
+    ],
+    answer: 0
+  },
+
+  // Q15
+  // Correct: B
+  {
+    q: "Among the changes A through D in a client/server system, which of the following is the list that contains all and only the appropriate changes for reducing the response time? A: Establishing a high-speed line between the client and the server, and reducing the time taken to transmit data. B: Increasing the number of clients, and reducing the waiting time for users before using clients. C: Reducing the time taken for data entry by users on the client's input screen. D: Making the server high-performance, and reducing the server's processing time.",
+    choices: [
+      "A, B, C",
+      "A, D",
+      "B, C",
+      "C, D"
+    ],
+    answer: 1
+  },
+
+  // Q16
+  // Correct: C
+  {
+    q: "There is a web system that is composed of two (2) web servers and one (1) database server as shown in the figure. When the availability of each Web server is 0.8 and the availability of the Database server is 0.9, which of the following is the availability of this system rounded off to two (2) decimal places? Here, if at least one (1) of the two (2) Web servers are operating and the Database server is operating, it is considered that the system is operating. Also, a fault occurs randomly on each server.",
+    img: "images/q16.png",
+    choices: [
+      "0.04",
+      "0.58",
+      "0.86",
+      "0.96"
+    ],
+    answer: 2
+  },
+
+  // Q17
+  // Correct: C
+  {
+    q: "Which of the following is an appropriate explanation of multitasking?",
+    choices: [
+      "Several computers connected via a network work together to achieve a high-performance system.",
+      "Several processor cores composed of arithmetic circuits and other control circuits are implemented in a single CPU.",
+      "The CPU processing time is allocated to several processes in turn so that the processes can be executed concurrently.",
+      "The same processing is performed for multiple data items by executing a single instruction."
+    ],
+    answer: 2
+  },
+
+  // Q18
+  // Correct: A
+  {
+    q: "The types of programs that are running when a PC is started are broadly classified into three (3) categories, namely BIOS (Basic Input Output System), OS, and resident application programs. Which of the following is the order of execution of the programs?",
+    choices: [
+      "BIOS, OS, resident application programs",
+      "OS, BIOS, resident application programs",
+      "OS, resident application programs, BIOS",
+      "Resident application programs, BIOS, OS"
+    ],
+    answer: 0
+  },
+
+  // Q19
+  // Correct: C
+  {
+    q: "Multiple files stored on a hard disk are used in work, Monday to Friday. To handle failure of the hard disk, the data is backed up to another hard disk after the end of each day's work. Conditions: (1) There are 6,000 files used in work, each size 3 Mbytes. (2) Each day, 1,000 files are modified; modifications do not change file size. (3) Files are copied at 10 Mbytes/second, one file at a time, backup continues without interruption. (4) Monday–Thursday, only files modified that day are backed up. On Friday, all files are backed up whether modified or not. What is total time required (in minutes) to perform backups Monday to Friday?",
+    choices: [
+      "25",
+      "35",
+      "50",
+      "150"
+    ],
+    answer: 2
+  },
+
+  // Q20
+  // Correct: C
+  {
+    q: "Spreadsheet software is used to perform calculation with monthly sales data for each product shown. When the expression COUNTIF(B2:D2,>15000) is entered in cell E2 and then copied to E3 and E4, what value is displayed in E4?",
+    img: "images/q20.png",
+    choices: [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    answer: 2
+  },
+
+  // Q21
+  // Correct: A
+  {
+    q: "Which of the following is an Open Source Software (OSS) OS that is used in mobile devices such as smartphones and tablets?",
+    choices: [
+      "Android",
+      "iOS",
+      "Safari",
+      "Windows"
+    ],
+    answer: 0
+  },
+
+  // Q22
+  // Correct: D
+  {
+    q: "In document creation software, spreadsheet software, and others, which of the following is a function that predefines and executes a series of operation procedures?",
+    choices: [
+      "Autocomplete",
+      "Source code",
+      "Plug and play",
+      "Macro"
+    ],
+    answer: 3
+  },
+
+  // Q23
+  // Correct: D
+  {
+    q: "Which of the following is a space-saving server where computer components including the CPU, main memory, and storage are installed on a single circuit board and multiple circuit boards are mounted in racks?",
+    choices: [
+      "DNS server",
+      "FTP server",
+      "Web server",
+      "Blade server"
+    ],
+    answer: 3
+  },
+
+  // Q24
+  // Correct: C
+  {
+    q: "Which of the following is a technology that projects things such as video made with computer graphics onto buildings, objects, and other three-dimensional things, producing a variety of visual effects?",
+    choices: [
+      "Digital signage",
+      "Virtual reality",
+      "Projection mapping",
+      "Polygon"
+    ],
+    answer: 2
+  },
+
+  // Q25
+  // Correct: D
+  {
+    q: "Which of the following is a data format that can be used to compress both video and audio data?",
+    choices: [
+      "BMP",
+      "GIF",
+      "JPEG",
+      "MPEG"
+    ],
+    answer: 3
+  },
+
+  // Q26
+  // Correct: D
+  {
+    q: "By joining tables 'Employees in charge', 'Regions', and 'Customers' managed in a relational database, table A below is obtained. Which of the following is the table 'Customers' used for the joining? (Solid underline: primary key; dotted underline: foreign key.)",
+    img: "images/q26.png",
+    choices: [
+      "Customer code Customer name Representative name",
+      "Customer code Customer name Representative name Employee code",
+      "Customer code Customer name Representative name Region code",
+      "Customer code Customer name Representative name Employee code Region code"
+    ],
+    answer: 3
+  },
+
+  // Q27
+  // Correct: B
+  {
+    q: "Which of the following is an appropriate purpose of conducting data normalization when a relational database is constructed?",
+    choices: [
+      "Providing redundancy to data in order to detect data errors",
+      "Eliminating data inconsistencies and duplications in order to make it easy to maintain and manage the data",
+      "Unifying the character code of data in order to improve data reliability and storage efficiency",
+      "Losslessly compressing data in order to improve access efficiency"
+    ],
+    answer: 1
+  },
+
+  // Q28
+  // Correct: A
+  {
+    q: "An 'Employee' table and a 'Department' table were created based on conditions: (i) Each employee has one employee number not duplicated. (ii) There can be employees with same first and family name. (iii) Each department has one department code not duplicated. (iv) Each department has multiple employees. (v) Each employee belongs to only one department. Which is the most appropriate primary key for the 'Employee' table?",
+    choices: [
+      "EmployeeNumber",
+      "EmployeeNumber and DepartmentCode",
+      "EmployeeName",
+      "DepartmentCode"
+    ],
+    answer: 0
+  },
+
+  // Q29
+  // Correct: D
+  {
+    q: "Which of the following is the appropriate description concerning transaction processing?",
+    choices: [
+      "Commit is the reversion of a database to the status prior to the start of the transaction when a transaction is not processed successfully.",
+      "Exclusive control is the confirmation of the content of a database when a transaction is processed successfully.",
+      "Rollback ensures that there are no inconsistencies in data when multiple transactions attempt to update data simultaneously.",
+      "Log is a file that records transaction history of a database."
+    ],
+    answer: 3
+  },
+
+  // Q30
+  // Correct: A
+  {
+    q: "Three (3) PCs and an Internet-capable TV are to be connected to the Internet by using a hub and a router that has a firewall function. Which of the following is an appropriate connection that enables the firewall function of the router to be used for all the traffic between the devices and the Internet? ('FW' indicates firewall in each figure.)",
+    img: "images/q30.png",
+    choices: [
+      "a)",
+      "b)",
+      "c)",
+      "d)"
+    ],
+    answer: 0
+  },
+
+  // Q31
+  // Correct: C
+  {
+    q: "Which of the following is the appropriate role of a DNS in a network?",
+    choices: [
+      "Allocates an unused IP address from a pool in response to a client request.",
+      "Receives requests for file transfers from clients and transfers files to clients, and stores files received from clients.",
+      "Links domain names to IP addresses.",
+      "Receives a request for retrieval from an e-mail recipient and transfers e-mail received by a mail server."
+    ],
+    answer: 2
+  },
+
+  // Q32
+  // Correct: C
+  {
+    q: "Which of the following is an appropriate example of an IPv4 IP address assigned to a PC?",
+    choices: [
+      "00.00.11.aa.bb.cc",
+      "050-1234-5678",
+      "10.123.45.67",
+      "http://www.example.co.jp/"
+    ],
+    answer: 2
+  },
+
+  // Q33
+  // Correct: C
+  {
+    q: "Mr. A sent an e-mail to Mr. P, Mr. Q, and Mr. R. He entered Mr. P's address in To, Mr. Q in CC, and Mr. R in BCC. Which description concerning recipients is appropriate?",
+    choices: [
+      "Mr. P and Mr. Q can see that the same e-mail was also sent to Mr. R.",
+      "Mr. P cannot see that the same e-mail was also sent to Mr. Q.",
+      "Mr. Q can see that the same e-mail was also sent to Mr. P.",
+      "Mr. R cannot see that the same e-mail was also sent to Mr. P and Mr. Q."
+    ],
+    answer: 2
+  },
+
+  // Q34
+  // Correct: D
+  {
+    q: "Which of the following is a technology used to make voice calls over the Internet by two parties using the same application on their smartphones or devices?",
+    choices: [
+      "MVNO",
+      "NFC",
+      "NTP",
+      "VoIP"
+    ],
+    answer: 3
+  },
+
+  // Q35
+  // Correct: A
+  {
+    q: "Among descriptions A–D concerning how to conduct information security education to employees, which contains all and only the appropriate descriptions? A: Re-education after a breach includes preventive actions. B: Incorporate into new employee training. C: Restricted to information systems department. D: Conducted after incidents as well as regularly.",
+    choices: [
+      "A, B, D",
+      "A, C, D",
+      "A, D",
+      "B, C"
+    ],
+    answer: 0
+  },
+
+  // Q36
+  // Correct: D
+  {
+    q: "Among descriptions A–D about handling a contact list with customer names and addresses, which contains all and only the appropriate descriptions in terms of personal information protection? A: Even if a customer asks to check their registration info, this cannot be disclosed. B: Extract all names and addresses and send to customers to check for errors. C: A CD-ROM that includes contact list data is shredded before disposal. D: Contact list data is encrypted when stored in a file.",
+    choices: [
+      "A, C, D",
+      "A, D",
+      "B, C",
+      "C, D"
+    ],
+    answer: 3
+  },
+
+  // Q37
+  // Correct: D
+  {
+    q: "Among threats and vulnerabilities in information security, which is a vulnerability?",
+    choices: [
+      "Computer virus",
+      "Social engineering",
+      "Tapping of communications data",
+      "Inappropriate password management"
+    ],
+    answer: 3
+  },
+
+  // Q38
+  // Correct: A
+  {
+    q: "Which of the following is an appropriate disposal method for media that stores confidential information to ensure information leakage does not occur?",
+    choices: [
+      "CDs and DVDs are destroyed and then disposed of.",
+      "A PC is disposed of with its CPU being destroyed.",
+      "USB memory is disposed of with its files and folders being deleted.",
+      "Paper documentation is not reused as memo paper and is sealed in a confidential envelope and then disposed of with general trash."
+    ],
+    answer: 0
+  },
+
+  // Q39
+  // Correct: B
+  {
+    q: "Which of the following is the term for software that encrypts files on a computer to make them unusable, and demands money or valuables in exchange for the decryption key?",
+    choices: [
+      "Keylogger",
+      "Ransomware",
+      "Rootkit",
+      "Worm"
+    ],
+    answer: 1
+  },
+
+  // Q40
+  // Correct: A
+  {
+    q: "Which of the following is an appropriate example of biometric authentication?",
+    choices: [
+      "Authentication with a fingerprint",
+      "Authentication with a digital certificate",
+      "Authentication with a personal ID card",
+      "Authentication with a one-time password"
+    ],
+    answer: 0
+  },
+
+  // Q41
+  // Correct: C
+  {
+    q: "During use of a PC in the workplace, a message displayed that antivirus software detected a virus. Which of the following is an appropriate action that should be taken immediately?",
+    choices: [
+      "Reboot the PC",
+      "Notification to the workplace by e-mail from the PC",
+      "Disconnection of the PC from networks",
+      "Backup of files on the PC"
+    ],
+    answer: 2
+  },
+
+  // Q42
+  // Correct: B
+  {
+    q: "There is an IoT system composed of IoT devices and an IoT server that manages them. Which combination of incidents (i)–(iii) and confidentiality, integrity, and availability compromised? (i) A device stopped working because battery ran out. (ii) Communication not encrypted so information leakage occurred. (iii) Incorrect data recorded because of system fault.",
+    choices: [
+      "Availability Integrity Confidentiality",
+      "Availability Confidentiality Integrity",
+      "Integrity Availability Confidentiality",
+      "Confidentiality Availability Integrity"
+    ],
+    answer: 1
+  },
+
+  // Q43
+  // Correct: D
+  {
+    q: "In activities of an organization running an ISMS on the PDCA cycle, improvements and corrective measures are decided from monitoring results of risk management activities. In which PDCA process is this performed?",
+    choices: [
+      "P",
+      "D",
+      "C",
+      "A"
+    ],
+    answer: 3
+  },
+
+  // Q44
+  // Correct: C
+  {
+    q: "When risk treatment is divided into risk avoidance, risk sharing, risk mitigation, and risk retention, which is an appropriate explanation of risk sharing?",
+    choices: [
+      "Halting activities that involve risk and eliminating risk factors.",
+      "Implementing measures to reduce probability of occurrence and reduce damage, e.g., distributing data center over multiple locations.",
+      "Reducing damage by transferring or distributing risk to another organization via agreement, e.g., purchasing insurance.",
+      "If probability or damage is small, accept the risk without particular measures."
+    ],
+    answer: 2
+  },
+
+  // Q45
+  // Correct: C
+  {
+    q: "Which of the following is an appropriate description concerning user authentication of a system?",
+    choices: [
+      "A mechanism that achieves login to multiple servers with a single authentication is called challenge-response authentication.",
+      "A mechanism that authenticates a user using fingerprints, voice prints, and other body characteristics is called single sign-on.",
+      "A code number used to authenticate a user of an information system is called a PIN.",
+      "A method where positions in a grid are memorized and during authentication a person enters numbers/characters in those positions is called multi-factor authentication."
+    ],
+    answer: 2
+  },
+
+  // Q46
+  // Correct: C
+  {
+    q: "Mr. A, a participant in system testing, has no access to internal design and prepares input/output data to verify transaction functions commonly used in the department. Which testing technique is Mr. A implementing?",
+    choices: [
+      "Inspection",
+      "Walk-through",
+      "Black-box testing",
+      "White-box testing"
+    ],
+    answer: 2
+  },
+
+  // Q47
+  // Correct: C
+  {
+    q: "Processes of system development include requirements definition, systems architecture design, system integration testing, and software acceptance. Which activity is performed in system requirements definition?",
+    choices: [
+      "The party outsourced uses the software under production environment conditions to determine if it runs correctly.",
+      "A system test plan is created and a test environment is prepared.",
+      "The functions and performance required of the system are clarified.",
+      "A program is created and test results are reviewed according to evaluation criteria."
+    ],
+    answer: 2
+  },
+
+  // Q48
+  // Correct: C
+  {
+    q: "What is the term for revising and changing programs after system development?",
+    choices: [
+      "Computerization planning",
+      "System operation",
+      "Software maintenance",
+      "Requirements definition"
+    ],
+    answer: 2
+  },
+
+  // Q49
+  // Correct: D
+  {
+    q: "Which of the following is the most appropriate description concerning the usability of RPA software when quality characteristics are classified into portability, functional suitability, compatibility, usability, reliability, performance efficiency, security, and maintainability?",
+    choices: [
+      "It operates even if the OS of the PC that RPA runs on changes.",
+      "Automatic processing is executed at the time and on the conditions specified with RPA.",
+      "Even if the version of application software is upgraded, RPA will work with a simple change of the settings.",
+      "People who have never used RPA can use it with only simple education."
+    ],
+    answer: 3
+  },
+
+  // Q50
+  // Correct: C
+  {
+    q: "Which of the following is the most appropriate case example of DevOps in software development?",
+    choices: [
+      "Developer prepares a prototype of important functions and evaluates adequacy by measuring performance with the customer.",
+      "Developer moves on to next phase only after current phase complete and hands over to operations after system test.",
+      "Developer and operator work in close cooperation and quickly proceed with implementation and updates using automation tools.",
+      "Programs are added one by one while fixed short-period cycles are repeated to expand functions."
+    ],
+    answer: 2
+  },
+
+  // Q51
+  // Correct: B
+  {
+    q: "A system development project has more defects than quality targets. To clarify issues to prioritize, number of defects for each cause is investigated and shown with a chart. Which chart is appropriate?",
+    choices: [
+      "Pie chart",
+      "Pareto chart",
+      "Line chart",
+      "Scatter plot"
+    ],
+    answer: 1
+  },
+
+  // Q52
+  // Correct: A
+  {
+    q: "A delayed system development project: leader proposes omitting part of planned procedure. Members split: some say unavoidable, others oppose fearing quality decrease. From perspective of ensuring quality, which action is most appropriate?",
+    choices: [
+      "Discuss detailed measures against decrease in quality within the project and build consensus.",
+      "Decide by majority of highly skilled people among project members.",
+      "Proceed as proposed because leader has most experience.",
+      "Replace members who cannot agree."
+    ],
+    answer: 0
+  },
+
+  // Q53
+  // Correct: A
+  {
+    q: "In an arrow diagram showing system development, if activities A and D are delayed for three (3) days in total, what is the delay in the entire project? (Given diagram with required days and critical path info.)",
+    choices: [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    answer: 0
+  },
+
+  // Q54
+  // Correct: C
+  {
+    q: "In a project team that must communicate one-to-one, when members increase from six (6) to ten (10), by how many times does the number of communication paths increase?",
+    choices: [
+      "1.5",
+      "2.5",
+      "3",
+      "6"
+    ],
+    answer: 2
+  },
+
+  // Q55
+  // Correct: D
+  {
+    q: "Which of the following organizes all activities to be performed in the project in a hierarchical structure?",
+    choices: [
+      "CRM",
+      "ERP",
+      "PPM",
+      "WBS"
+    ],
+    answer: 3
+  },
+
+  // Q56
+  // Correct: D
+  {
+    q: "When a project may be affected by many change requests from users during development, which is the most appropriate measure to ensure no deterioration in quality or delay in delivery?",
+    choices: [
+      "Declare change requests cannot be accepted after completion of design.",
+      "Shorten the test period by skipping tests when delay occurs.",
+      "Include in plan that implementation of a function will be called off if many change requests occur.",
+      "Reach agreement with the customer on what can be accepted as change requests and how to determine priority."
+    ],
+    answer: 3
+  },
+
+  // Q57
+  // Correct: D
+  {
+    q: "Processes of project management include cost, communications, resources, schedule management. In a system development project, when members are added for testing, which is most appropriate activity in project cost management?",
+    choices: [
+      "Updating the mailing list so information can be efficiently transmitted.",
+      "Requesting vendor to provide training on the testing tool to new members.",
+      "Adding tasks handled by new members and changing the schedule.",
+      "Estimating personnel expenses of newly participating members and changing the plan."
+    ],
+    answer: 3
+  },
+
+  // Q58
+  // Correct: D
+  {
+    q: "Which of the following is an appropriate purpose for facility management concerning IT systems?",
+    choices: [
+      "Optimization of IT service cost",
+      "Continuation of a company’s business in the event of a disaster, etc.",
+      "Ensuring appropriate security for information assets",
+      "Overall maintenance of facilities and the environment for information processing"
+    ],
+    answer: 3
+  },
+
+  // Q59
+  // Correct: D
+  {
+    q: "Which of the following is the most appropriate activity of a service desk?",
+    choices: [
+      "Eliminating the root cause of an incident and preventing recurrence",
+      "Installing updated software to prevent recurrence",
+      "Performing centralized management of changes in a service",
+      "Handling and recording inquiries from users"
+    ],
+    answer: 3
+  },
+
+  // Q60
+  // Correct: B
+  {
+    q: "Which of the following is the most appropriate interface that responds to a user's query in an interactive and automated manner?",
+    choices: [
+      "Recommendation",
+      "Chatbot",
+      "Escalation",
+      "FAQs"
+    ],
+    answer: 1
+  },
+
+  // Q61
+  // Correct: D
+  {
+    q: "In the PDCA cycle of service level management, which is implemented as Check (C)?",
+    choices: [
+      "Providing services on the basis of the SLA",
+      "Preparing a service improvement plan based on the service report and review results",
+      "Agreeing upon desired service quality and preparing an SLA",
+      "Monitoring and measuring provided services and preparing a service report"
+    ],
+    answer: 3
+  },
+
+  // Q62
+  // Correct: A
+  {
+    q: "Which is the appropriate combination of IT service management and the content of the SLA for hosting service A–C? A: Time a server is operational. B: Time taken until a specified member is notified after disk free space reaches threshold. C: Time taken until specified member is notified after unauthorized access detected. (Service availability management, Capacity management, Information security management) Choose the matching order.",
+    choices: [
+      "A B C",
+      "A C B",
+      "B A C",
+      "C B A"
+    ],
+    answer: 0
+  },
+
+  // Q63
+  // Correct: B
+  {
+    q: "In a company, who is responsible for establishment of IT governance?",
+    choices: [
+      "Shareholders",
+      "Management",
+      "System auditor",
+      "Head of systems department"
+    ],
+    answer: 1
+  },
+
+  // Q64
+  // Correct: C
+  {
+    q: "A food manufacturer revises internal standards according to revised industry safety standards. Which objective of internal control corresponds to this action?",
+    choices: [
+      "Effectiveness and efficiency of business",
+      "Reliability of financial reporting",
+      "Compliance with laws and regulations related to business operations",
+      "Protection of assets"
+    ],
+    answer: 2
+  },
+
+  // Q65
+  // Correct: D
+  {
+    q: "Which is the most appropriate objective of an accounting audit?",
+    choices: [
+      "To check that risks are controlled concerning the accounting system and IT governance is implemented",
+      "To check that risk management is implemented effectively concerning information security",
+      "To check that various kinds of work including accounting service are implemented rationally and efficiently",
+      "To check that processing is performed without impropriety or errors from transactions to aggregation into a financial report"
+    ],
+    answer: 3
+  },
+
+  // Q66
+  // Correct: B
+  {
+    q: "Which of the following is an appropriate way to brainstorm?",
+    choices: [
+      "Ask participants to present feasible ideas and refrain from unrestrained ideas",
+      "Proceed without blaming any member who creates an improved idea that takes advantage of another member’s idea",
+      "Proceed while selecting ideas suitable to the theme",
+      "Encourage criticism of ideas to pursue quality rather than quantity"
+    ],
+    answer: 1
+  },
+
+  // Q67
+  // Correct: A
+  {
+    q: "A product's sales plan and sales result are shown. What is the ratio (percentage) of profit result to profit plan? (Decimal fractions truncated.) Given: Purchase price p=1000 both plan/result; Number of purchases q plan 1000 result 1100; Sale price r plan 1500 result 1350; Number of sales s plan 1000 result 1100. Profit t = r×s - p×q. Choose percentage.",
+    choices: [
+      "77",
+      "99",
+      "110",
+      "129"
+    ],
+    answer: 0
+  },
+
+  // Q68
+  // Correct: D
+  {
+    q: "If risk assessment is divided into three processes, which is the third besides risk identification and risk evaluation?",
+    choices: [
+      "Risk transfer",
+      "Risk avoidance",
+      "Risk reduction",
+      "Risk analysis"
+    ],
+    answer: 3
+  },
+
+  // Q69
+  // Correct: B
+  {
+    q: "Which term best describes: 'To achieve continuous growth, a company withdraws from business area A with stagnant sales and puts management resources into strengthening business area B'?",
+    choices: [
+      "Business environment",
+      "Business strategy",
+      "Management vision",
+      "Management philosophy"
+    ],
+    answer: 1
+  },
+
+  // Q70
+  // Correct: A
+  {
+    q: "Which expression calculates operating profit?",
+    choices: [
+      "(Gross profit) − (Selling, general, and administrative expense)",
+      "(Sales) − (Cost of sales)",
+      "(Current profits) + (Extraordinary profit) − (Extraordinary loss)",
+      "(Current net profit before tax) − (Corporate tax, residential tax, and business tax)"
+    ],
+    answer: 0
+  },
+
+  // Q71
+  // Correct: D
+  {
+    q: "To improve call center customer service level, complaints are classified and tabulated. Which chart is suitable for showing number of complaints in bar chart and cumulative percentage in line chart in descending order to determine priority?",
+    choices: [
+      "PERT chart",
+      "Control chart",
+      "Cause and effect diagram",
+      "Pareto chart"
+    ],
+    answer: 3
+  },
+
+  // Q72
+  // Correct: D
+  {
+    q: "Which role has direct responsibility for technology management, such as creation of technology strategy and promotion of technology development?",
+    choices: [
+      "CEO",
+      "CFO",
+      "COO",
+      "CTO"
+    ],
+    answer: 3
+  },
+
+  // Q73
+  // Correct: D
+  {
+    q: "Which of the following is a corporate activity of compliance promotion?",
+    choices: [
+      "Mechanism to share salespeople's sales know-how to improve productivity",
+      "Mechanism to share customer information among all departments to increase satisfaction",
+      "Share schedules, documents, messages, and meeting room statuses to prevent communication loss",
+      "Create code of conduct/manual based on corporate ethics and implement ethical education to ensure employees understand them"
+    ],
+    answer: 3
+  },
+
+  // Q74
+  // Correct: B
+  {
+    q: "Among information processing standards, which is defined for information security management?",
+    choices: [
+      "IEEE 802.3",
+      "ISO/IEC 27001",
+      "JPEG 2000",
+      "MPEG 1"
+    ],
+    answer: 1
+  },
+
+  // Q75
+  // Correct: B
+  {
+    q: "Which is the most appropriate example of standardization in the manufacturing industry?",
+    choices: [
+      "Daily workload balanced so types and volume of components taken daily are equalized.",
+      "Use common components and procedures for manufacturing to streamline production.",
+      "Select optimum algorithm to improve speed of production management program.",
+      "Simplify production planning/processes by reducing product types and reviewing work details."
+    ],
+    answer: 1
+  },
+
+  // Q76
+  // Correct: A
+  {
+    q: "According to ISO 9000, quality is 'degree to which a set of inherent characteristics fulfills requirements.' Which is most appropriate as a product with good quality?",
+    choices: [
+      "A product having no customer complaints and a high level of customer satisfaction",
+      "A product a company produces in-house without outsourcing",
+      "A product designed and manufactured using CAD and CAM",
+      "A product utilizing materials and components of high quality"
+    ],
+    answer: 0
+  },
+
+  // Q77
+  // Correct: C
+  {
+    q: "Which is the most appropriate example of enhanced corporate governance?",
+    choices: [
+      "Enhancing the labor system to empower women",
+      "Purchasing another company to swiftly deploy business",
+      "Increasing the number of highly-independent outside directors",
+      "Withdrawing from a business where it is hard to obtain profit"
+    ],
+    answer: 2
+  },
+
+  // Q78
+  // Correct: C
+  {
+    q: "A piece of software is provided in a form that enables use at a set fee or for a certain period. Which term expresses this form of use?",
+    choices: [
+      "Activation",
+      "Adware",
+      "Subscription",
+      "Volume license"
+    ],
+    answer: 2
+  },
+
+  // Q79
+  // Correct: C
+  {
+    q: "Company A: strengths include strong brand image and R&D; weaknesses include large-scale retirement of skilled workers. Opportunities: monetary easing; threats: sharp rise in oil prices, spread of environmental conservation consciousness. Which measure leverages strengths and overcomes threats?",
+    choices: [
+      "Extend retirement age of skilled workers or implement rehiring",
+      "Procure funds at low interest and stockpile large reserves of oil",
+      "Conduct R&D and commercialize electric automobiles",
+      "Take advantage of brand image to strengthen sales capabilities"
+    ],
+    answer: 2
+  },
+
+  // Q80
+  // Correct: D
+  {
+    q: "Which of the following is an appropriate description concerning M&A?",
+    choices: [
+      "Analysis of flow of business and chain of value for creating value of products and services",
+      "Increase in autonomy by dividing a company by business or region",
+      "Drastic reform of business processes using IT to increase throughput and cost efficiency",
+      "Acceleration of business deployment by fulfilling lacking functions through corporate acquisition"
+    ],
+    answer: 3
+  },
+
+  // Q81
+  // Correct: A
+  {
+    q: "Which is an appropriate explanation of 3C analysis used to analyze a business environment?",
+    choices: [
+      "Analysis from three perspectives: customers, competitors, and the company",
+      "Analysis from last purchase date, purchase frequency, and purchase amount",
+      "Analysis by decomposition into era, age, and generation",
+      "Categorization into three groups in descending order of total sales"
+    ],
+    answer: 0
+  },
+
+  // Q82
+  // Correct: A
+  {
+    q: "Which of the following is an appropriate description concerning a balanced scorecard (BSC)?",
+    choices: [
+      "A business management technique converting vision and strategy into actions from four viewpoints: financial, customer, business process, growth and learning.",
+      "An approach viewing corporate activities as a chain of procurement, development, manufacturing, sales, and service.",
+      "A business analysis technique for companies producing varied products to determine efficient distribution of management resources.",
+      "A business strategy technique evaluating strengths, weaknesses, opportunities, threats."
+    ],
+    answer: 0
+  },
+
+  // Q83
+  // Correct: C
+  {
+    q: "Several companies want to collaborate on R&D. Which organization is formed through collaborative investment?",
+    choices: [
+      "M&A",
+      "Cross-license",
+      "Joint venture",
+      "Spin-off"
+    ],
+    answer: 2
+  },
+
+  // Q84
+  // Correct: C
+  {
+    q: "Which is the most appropriate example of business improvement through SCM implementation?",
+    choices: [
+      "Products sold over the Internet leading to increased sales from expanded channels.",
+      "Sales information and know-how managed in a database to share with sales department.",
+      "Sales information sent to manufacturer over network so manufacturer can produce and supply timely.",
+      "Sales data gathered at headquarters for demographic analysis."
+    ],
+    answer: 2
+  },
+
+  // Q85
+  // Correct: C
+  {
+    q: "A bank publishes interface specifications and permits access from external parties who concluded contracts to enable advanced services. Which term expresses this initiative?",
+    choices: [
+      "BPO",
+      "RPA",
+      "Open API",
+      "Technology management"
+    ],
+    answer: 2
+  },
+
+  // Q86
+  // Correct: C
+  {
+    q: "Which system collects information required for sales management or inventory control by reading or keying a product code or a buyer's attribute at the time of sale?",
+    choices: [
+      "ETC",
+      "GPS",
+      "POS",
+      "SCM"
+    ],
+    answer: 2
+  },
+
+  // Q87
+  // Correct: D
+  {
+    q: "Which is the most appropriate description concerning deep learning?",
+    choices: [
+      "Mechanism that integrates information and workflow between customer-involved departments.",
+      "A form of education using digital devices and networks.",
+      "Mechanism to share knowledge and knowhow possessed by individuals within organization.",
+      "A technology where a computer identifies and learns characteristics of data by analyzing large volumes with a model that imitates neural circuits."
+    ],
+    answer: 3
+  },
+
+  // Q88
+  // Correct: D
+  {
+    q: "Which of the following is an appropriate effect of CAD?",
+    choices: [
+      "Identifying required material volume and placing optimum orders",
+      "Automating production processes and removing need for human work",
+      "Managing production processes in an integrated manner",
+      "Reusing design data and simplifying/streamlining work"
+    ],
+    answer: 3
+  },
+
+  // Q89
+  // Correct: C
+  {
+    q: "Which term best refers to an automobile that connects to the Internet, sends on-board sensor info to a server, and receives driving-related information from the server to support driving?",
+    choices: [
+      "Car sharing",
+      "Car navigation system",
+      "Connected car",
+      "Electric automobile"
+    ],
+    answer: 2
+  },
+
+  // Q90
+  // Correct: A
+  {
+    q: "In a manufacturing company, a production system uses electronic tags containing information such as part number. Tags are used as production order from post-process to pre-process and a delivery note from pre-process to post-process, used in just-in-time production. What is the appropriate name for such a system?",
+    choices: [
+      "Kanban system",
+      "Craft production system",
+      "Cell production system",
+      "Build-to-stock production system"
+    ],
+    answer: 0
+  },
+
+  // Q91
+  // Correct: D
+  {
+    q: "Crowdfunding types: loan-based, donation-based, purchase-based, or investment-based. Company A raises funds via crowdfunding and pays part of profits to funders as dividends. Which type is appropriate?",
+    choices: [
+      "Loan-based crowdfunding",
+      "Donation-based crowdfunding",
+      "Purchase-based crowdfunding",
+      "Investment-based crowdfunding"
+    ],
+    answer: 3
+  },
+
+  // Q92
+  // Correct: A
+  {
+    q: "As sightseeing guidance, images of past buildings and explanatory info are displayed on top of current scenery when a smartphone is pointed at a historic site. Which mechanism is utilized?",
+    choices: [
+      "AR",
+      "GUI",
+      "VR",
+      "Metaverse"
+    ],
+    answer: 0
+  },
+
+  // Q93
+  // Correct: D
+  {
+    q: "Which is the most appropriate description concerning DFD (Data Flow Diagram)?",
+    choices: [
+      "Represents transitions of the state of a system as time passes and condition changes.",
+      "Represents the relationship and data structure of entities handled by a system.",
+      "Represents attributes, operations, and relations between components a system is composed of.",
+      "Focuses on flow of data and represents relations between flow and processing of data."
+    ],
+    answer: 3
+  },
+
+  // Q94
+  // Correct: A
+  {
+    q: "Which is the most appropriate term for information in large quantities and diverse forms that grows rapidly and is expected to help obtain knowledge useful for decision-making?",
+    choices: [
+      "Big data",
+      "Diversity",
+      "Core competence",
+      "Crowdfunding"
+    ],
+    answer: 0
+  },
+
+  // Q95
+  // Correct: B
+  {
+    q: "Which is the most appropriate explanation of the relation between business strategy and information systems strategy?",
+    choices: [
+      "A business strategy and information systems strategy are created independently.",
+      "An information systems strategy is created on the basis of a business strategy.",
+      "A business strategy is created on the basis of an information systems strategy.",
+      "An information systems strategy is the IT department strategy, business strategy is the business planning department strategy."
+    ],
+    answer: 1
+  },
+
+  // Q96
+  // Correct: C
+  {
+    q: "Which term represents the practical verification of a new concept or idea before development?",
+    choices: [
+      "CRM",
+      "KPI",
+      "PoC",
+      "SLA"
+    ],
+    answer: 2
+  },
+
+  // Q97
+  // Correct: A
+  {
+    q: "Which is the appropriate combination of terms to insert into blanks in the description concerning a request for proposal? 'A request for proposal concerning system development is a document by which ___ presents to ___ procurement conditions, etc.'",
+    choices: [
+      "an information system department / vendors / system requirements",
+      "an information system department / user departments / system requirements",
+      "a vendor / an information system department / system installation result",
+      "a vendor / a user department / system installation result"
+    ],
+    answer: 0
+  },
+
+  // Q98
+  // Correct: A
+  {
+    q: "Which is the most appropriate term that refers to the goals for development to be achieved by 2030 adopted by the United Nations to achieve a sustainable world?",
+    choices: [
+      "SDGs",
+      "SDK",
+      "SGA",
+      "SGML"
+    ],
+    answer: 0
+  },
+
+  // Q99
+  // Correct: B
+  {
+    q: "When software lifecycle is divided into planning, requirements definition, development, and operation, which process clarifies system functions users and stakeholders require and builds consensus based on a computerization plan?",
+    choices: [
+      "Planning process",
+      "Requirements definition process",
+      "Development process",
+      "Operation process"
+    ],
+    answer: 1
+  },
+
+  // Q100
+  // Correct: B
+  {
+    q: "Which term expresses the change where, by using digital technology, a company creates a user experience and business model that attracts customers, expels conventional services in the industry, and destroys the existing industry structure?",
+    choices: [
+      "Digital signage",
+      "Digital disruption",
+      "Digital divide",
+      "Digital transformation"
+    ],
+    answer: 1
+  }
+];
+
+// Export if needed (uncomment for Node.js)
+// module.exports = questions;

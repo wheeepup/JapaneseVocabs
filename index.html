@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Vocabulary Practice</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <!-- Drift script -->
+    <script>
+        "use strict";
+        !function() {
+            var t = window.driftt = window.drift = window.driftt || [];
+            if (!t.init) {
+                if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+                t.invoked = !0, t.methods = ["identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on"],
+                t.factory = function(e) {
+                    return function() {
+                        var n = Array.prototype.slice.call(arguments);
+                        return n.unshift(e), t.push(n), t;
+                    };
+                };
+                t.methods.forEach(function(e) {
+                    t[e] = t.factory(e);
+                });
+                t.load = function(t) {
+                    var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+                    o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+                    var i = document.getElementsByTagName("script")[0];
+                    i.parentNode.insertBefore(o, i);
+                };
+            }
+        }();
+        drift.SNIPPET_VERSION = '0.3.1';
+        drift.load('ymbme2de267h');
+        drift.on("ready", function(api) {
+            api.widget.show();     // show the chat bubble
+            api.openChat();        // open the chat automatically
+        });
+
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector("header").addEventListener("click", function() {
+                const linksToCopy = [
+                    "https://music.youtube.com/playlist?list=PLDYVgJDwPI5j1ITUMCmeuQF5gS785Yixq&si=L1jr_1KFCwbwFaEr",
+                    "https://music.youtube.com/playlist?list=PLDYVgJDwPI5hriXf1pMjBVxCiRKW1LJfI&si=erOiyvfcoO4pFcmW"
+                ].join("\n"); // Joining links with a newline for better readability
+    
+                navigator.clipboard.writeText(linksToCopy).then(() => {
+                    console.log("Links copied to clipboard!");
+                }).catch(err => {
+                    console.error("Failed to copy text: ", err);
+                });
+            });
+        });
+        
+    </script>
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <h1>Japanese Vocabulary Practice</h1>
+        </header>
+
+        <!-- Tabs for Hiragana/Katakana and Kanji -->
+        <div class="tabs">
+            <button class="tab-button vocabulary active" data-tab="vocabulary">Vocabulary</button>
+            <button class="tab-button hiragana-katakana " data-tab="hiragana">Hiragana/Katakana</button>
+            <button class="tab-button kanji" data-tab="kanji">Kanji</button>
+        </div>
+
+        <!-- Dropdown for Vocabulary lesson selection -->
+        <div id="vocabulary-lesson-selection" class="lesson-selection ">
+            <!-- Search input for vocabulary -->
+            <div id="search-container" class="search-container">
+                <input type="text" id="search-input" placeholder="Search vocabulary..." />
+            </div>
+
+            <label for="vocabulary-lessons">Select a lesson:</label>
+            <select id="vocabulary-lessons">
+                <option value="">--Choose a lesson--</option>
+                <option value="lesson1">Lesson 1</option>
+                <option value="lesson2">Lesson 2</option>
+                <option value="lesson3">Lesson 3</option>
+                <option value="lesson4">Lesson 4</option>
+                <option value="lesson5">Lesson 5</option>
+                <option value="lesson6">Lesson 6</option>
+                <option value="lesson7">Lesson 7</option>
+                <option value="lesson8">Lesson 8</option>
+                <option value="lesson9">Lesson 9</option>
+                <option value="lesson10">Lesson 10</option>
+                <option value="lesson11">Lesson 11</option>
+                <option value="lesson12">Lesson 12</option>
+                <option value="lesson13">Lesson 13</option>
+                <option value="lesson14">Lesson 14</option>
+                <option value="lesson15">Lesson 15</option>
+                <option value="lesson16">Lesson 16</option>
+                <option value="lesson17">Lesson 17</option>
+                <option value="lesson18">Lesson 18</option>
+                <option value="lesson19">Lesson 19</option>
+                <option value="lesson20">Lesson 20</option>
+                <option value="lesson21">Lesson 21</option>
+                <option value="lesson22">Lesson 22</option>
+                <option value="lesson23">Lesson 23</option>
+                <option value="lesson24">Lesson 24</option>
+                <option value="lesson25">Lesson 25</option>
+                <option value="K1">Technical Kanji 1</option>
+                <option value="K2">Technical Kanji 2</option>
+                <option value="K3">Technical Kanji 3</option>
+                <option value="K4">Technical Kanji 4</option>
+                <option value="K5">Technical Kanji 5</option>
+            </select>
+            <!-- Container for displaying vocabulary words -->
+        <div id="vocabulary-words"></div>
+        </div>
+
+        
+
+        <!-- Checkbox selection for Hiragana/Katakana lessons -->
+        <div id="hiragana-lesson-selection" class="lesson-selection hidden">
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson1"> L1</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson2"> L2</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson3"> L3</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson4"> L4</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson5"> L5</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson6"> L6</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson7"> L7</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson8"> L8</label><br>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson9"> L9</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson10"> L10</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson11"> L11</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson12"> L12</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson13"> L13</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson14"> L14</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson15"> L15</label><br>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson16"> L16</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson17"> L17</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson18"> L18</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson19"> L19</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson20"> L20</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson21"> L21</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson22"> L22</label><br>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson23"> L23</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson24"> L24</label>
+            <label><input type="checkbox" class="lesson-checkbox" value="lesson25"> L25</label>
+        </div>
+
+        <!-- Checkbox selection for Kanji lessons -->
+        <div id="kanji-lesson-selection" class="lesson-selection hidden">
+            <label><input type="checkbox" class="kanji-lesson-checkbox" value="K1"> TK 1-1, 1-2</label>
+            <label><input type="checkbox" class="kanji-lesson-checkbox" value="K2"> TK 2-1, 2-2</label>
+            <label><input type="checkbox" class="kanji-lesson-checkbox" value="K3"> TK 3</label>
+            <label><input type="checkbox" class="kanji-lesson-checkbox" value="K4"> TK 4</label>
+            <label><input type="checkbox" class="kanji-lesson-checkbox" value="K5"> TK 5</label>
+        </div>
+
+        <div id="input-fields" class="study-container hidden">
+            <div id="word" class="word-display">Word will appear here</div>
+            <div id="inputs-container">
+                <input id="english-input" type="text" placeholder="Type English here...">
+                <input id="hiragana-input" type="text" placeholder="Type Hiragana here...">
+            </div>
+            <div id="feedback" class="feedback">Feedback will appear here</div>
+        </div>
+    </div>
+    
+</body>
+</html>

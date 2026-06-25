@@ -1,0 +1,294 @@
+/* Apply the custom font to the entire document */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Main container for overall layout */
+.main-container {
+    max-width: 600px; /* Maximum width */
+    width: 90%; /* Use percentage for responsiveness */
+    padding: 20px; /* Consistent padding */
+    background-color: #1e1e1e; /* Slightly lighter dark background */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    text-align: center;
+    margin: 20px auto; /* Center container with margin */
+}
+
+/* Header styles */
+header {
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2rem; /* Use rem for scalability */
+    color: #ffffff; /* White text for header */
+    margin: 0;
+}
+
+/* Tab buttons for switching between Hiragana/Katakana and Kanji */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.tab-button {
+    padding: 1rem 2rem; /* Use rem for padding */
+    border: none;
+    background-color: #2c2c2c; /* Darker button background */
+    cursor: pointer;
+    border-radius: 12px;
+    margin: 0.5rem; /* Use rem for margin */
+    font-size: 1rem; /* Use rem for font size */
+    color: #b0b0b0; /* Light gray text */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tab-button.active {
+    background-color: #4a54f1; /* Active tab background color */
+    color: #ffffff; /* White text for active tab */
+}
+
+.tab-button:hover {
+    background-color: #3a3a3a; /* Slightly lighter dark background on hover */
+}
+
+/* Study container for word display and input */
+.study-container {
+    margin-top: 30px;
+}
+
+.word-display {
+    font-size: 2rem; /* Use rem for scalability */
+    margin-bottom: 20px;
+    color: #ffffff; /* White text for the word display */
+}
+
+#user-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    font-size: 1rem; /* Use rem for scalability */
+    margin-bottom: 20px;
+    border: 1px solid #444; /* Dark border */
+    background-color: #333; /* Dark input background */
+    color: #e0e0e0; /* Light text color */
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+#toggle-button {
+    padding: 12px 30px;
+    background-color: #4a54f1; /* Button background color */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+#toggle-button:hover {
+    background-color: #3a45d3; /* Slightly darker button color on hover */
+}
+
+/* Feedback styling for correct and incorrect answers */
+.feedback {
+    font-size: 1rem; /* Use rem for scalability */
+    color: #e0e0e0; /* Light text color */
+    margin-top: 20px;
+}
+
+/* Input container for Kanji inputs */
+#inputs-container {
+    display: flex;
+    flex-direction: column; /* Stack inputs vertically */
+    align-items: center; /* Center inputs horizontally */
+    gap: 10px; /* Space between inputs */
+    width: 100%; /* Make sure it takes full width of the parent */
+}
+
+/* Input styles */
+#english-input, #hiragana-input {
+    width: 90%; /* Use a percentage to control width */
+    max-width: 400px; /* Maximum width for larger screens */
+    padding: 12px;
+    font-size: 1rem; /* Use rem for scalability */
+    margin-bottom: 20px; /* Space below each input */
+    border: 1px solid #444; /* Dark border */
+    background-color: #333; /* Dark input background */
+    color: #e0e0e0; /* Light text color */
+    border-radius: 5px;
+}
+
+/* Lesson selection styles */
+.lesson-selection {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.lesson-selection label {
+    color: #e0e0e0; /* Light text color */
+    font-size: 1rem; /* Use rem for scalability */
+    margin-right: 10px;
+}
+
+.lesson-checkbox {
+    margin-right: 5px;
+}
+
+/* Initially hide the lesson selection when the Kanji tab is active */
+.lesson-selection.hidden {
+    display: none;
+}
+
+/* New styles for vocabulary words display */
+#vocabulary-words {
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 10px;
+    margin-top: 20px; /* Space between dropdown and words container */
+    margin-bottom: 10px; /* Space below the words container */
+    color: #e0e0e0; /* Light text color */
+    height: 250px; /* Fixed height for words container */
+    overflow-y: auto; /* Enable vertical scrolling only if needed */
+    border: 1px solid #444; /* Optional: border for visual clarity */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #1e1e1e; /* Background color for the display area */
+    width: 90%; /* Set width to 90% for responsiveness */
+    max-width: 560px; /* Set maximum width to keep it consistent */
+    margin: 20px auto; /* Center the container with space above and below */
+}
+
+/* Individual word items */
+#vocabulary-words div {
+    background-color: #333; /* Dark background for words */
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center; /* Center text inside each word item */
+    font-size: 1rem; /* Use rem for scalability */
+    transition: background-color 0.3s;
+    margin-bottom: 10px; /* Space between items */
+    width: 100%; /* Ensure each word item takes full width of container */
+    max-width: 540px; /* Maximum width for individual word items */
+}
+
+#vocabulary-words div:hover {
+    background-color: #4a54f1; /* Highlight on hover */
+}
+
+/* Dropdown styling */
+#vocabulary-lessons {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    font-size: 1rem; /* Use rem for scalability */
+    border: 1px solid #444; /* Dark border */
+    background-color: #333; /* Dark background */
+    color: #e0e0e0; /* Light text color */
+    border-radius: 5px;
+}
+
+#search-container {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the content */
+    margin-bottom: 20px; /* Space below the container */
+}
+
+#search-input {
+    width: 100%; /* Full width */
+    max-width: 400px; /* Limit max width */
+    padding: 12px; /* Match padding with other inputs */
+    font-size: 1rem; /* Use rem for scalability */
+    border: 1px solid #444; /* Dark border */
+    background-color: #333; /* Dark background */
+    color: #e0e0e0; /* Light text color */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* Add shadow for consistency */
+}
+
+.hidden {
+    display: none;
+}
+
+.lower-left-image {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 150px; /* Adjust as needed */
+    height: auto;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 15px; /* Reduce padding on smaller screens */
+    }
+
+    header h1 {
+        font-size: 1.8rem; /* Smaller header size */
+    }
+
+    .tab-button {
+        padding: 10px 20px; /* Adjust padding for buttons */
+        font-size: 0.9rem; /* Smaller font size */
+    }
+
+    .word-display {
+        font-size: 1.5rem; /* Smaller word display size */
+    }
+
+    #english-input, #hiragana-input {
+        padding: 10px; /* Adjust padding for smaller screens */
+        font-size: 0.9rem; /* Smaller font size for inputs */
+    }
+
+    #search-container {
+        padding: 0 10px; /* Add padding for smaller screens */
+    }
+    
+    #search-input {
+        max-width: 100%; /* Ensure it takes full width on smaller screens */
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 10px; /* Further reduce padding for very small screens */
+    }
+
+    header h1 {
+        font-size: 1.5rem; /* Smaller header size for very small screens */
+    }
+
+    .tab-button {
+        padding: 8px 16px; /* Further adjust button padding */
+        font-size: 0.8rem; /* Smaller font size */
+    }
+
+    .word-display {
+        font-size: 1.2rem; /* Smaller word display size */
+    }
+
+    #vocabulary-words div {
+        font-size: 0.9rem; /* Smaller vocabulary item size */
+    }
+    
+    #english-input, #hiragana-input {
+        padding: 8px; /* Further adjust padding */
+        font-size: 0.8rem; /* Even smaller font size */
+    }
+}
