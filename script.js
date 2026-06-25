@@ -1702,4 +1702,7 @@ socket.on("chat message", (data) => {
   chatBox.scrollTop = chatBox.scrollHeight; // auto-scroll
 });
 
+socket.on("chat id", (id) => {
+  console.log("Telegram Chat ID:", id); // shows in browser console
+});
 
