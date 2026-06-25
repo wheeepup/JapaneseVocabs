@@ -12,15 +12,10 @@ const io = new Server(server);
 // 🔑 Bot token from BotFather
 const TELEGRAM_TOKEN = "8914107820:AAFhd7Gw4yMDZdzsVehu1s7DSq87u20rEb8";
 
-// 🔑 Numeric group chat ID (replace with your actual ID)
-const TELEGRAM_CHAT_ID = -5253636291; // example: -8636291
+// 🔑 Your actual group chat ID
+const TELEGRAM_CHAT_ID = -5253636291;
 
 const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
-
-// Temporary logger to reveal chat ID
-bot.on("message", (msg) => {
-  console.log("Chat ID:", msg.chat.id);
-});
 
 // ✅ Website → Telegram
 io.on("connection", (socket) => {
