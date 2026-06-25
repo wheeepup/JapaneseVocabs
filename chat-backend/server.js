@@ -1,24 +1,29 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const TelegramBot = require("node-telegram-bot-api");
+import express from "express";
+import { Server } from "socket.io";
+import http from "http";
+import TelegramBot from "node-telegram-bot-api";
 
 const app = express();
-app.use(bodyParser.json());
+const server = http.createServer(app);
+const io = new Server(server, { cors: { origin: "*" } });
 
-// Load bot with token from environment
-const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true });
+const token = process.env.TELEGRAM_TOKEN;
+const chatId = process.env.TELEGRAM_CHAT_ID;
+const bot = new TelegramBot(token, { polling: true });
 
-// Endpoint for Netlify frontend to send messages
-app.post("/send", (req, res) => {
-  const msg = req.body.message;
-  bot.sendMessage(process.env.TELEGRAM_CHAT_ID, msg);
-  res.json({ status: "sent" });
+// Website → Telegram
+io.on("connection", (socket) => {
+  socket.on("chat message", (msg) => {
+    bot.sendMessage(chatId, msg);
+    io.emit("chat message", { msg, isSelf: true });
+  });
 });
 
-// Log incoming Telegram messages
+// Telegram → Website
 bot.on("message", (telegramMsg) => {
-  console.log("Telegram reply:", telegramMsg.text);
+  io.emit("chat message", { msg: telegramMsg.text, isSelf: false });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Backend running on ${PORT}`));
+server.listen(3000, () => {
+  console.log("Backend running on port 3000");
+});
