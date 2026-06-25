@@ -9,9 +9,11 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Environment variables (set these in Render)
-const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+// 🔑 Bot token from BotFather
+const TELEGRAM_TOKEN = "8914107820:AAFhd7Gw4yMDZdzsVehu1s7DSq87u20rEb8";
+
+// 🔑 Numeric group chat ID (replace with your actual ID)
+const TELEGRAM_CHAT_ID = -5253636291; // example: -8636291
 
 const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 
