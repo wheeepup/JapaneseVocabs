@@ -17,6 +17,11 @@ const TELEGRAM_CHAT_ID = -5253636291; // example: -8636291
 
 const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 
+// Temporary logger to reveal chat ID
+bot.on("message", (msg) => {
+  console.log("Chat ID:", msg.chat.id);
+});
+
 // ✅ Website → Telegram
 io.on("connection", (socket) => {
   console.log("User connected");
