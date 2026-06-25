@@ -1640,11 +1640,13 @@ updateAllVocabularyWords();
 
 const socket = io("https://telegram-chat-backen.onrender.com");
 
+// ✅ Send text messages
 function sendMessage() {
-  const msg = document.getElementById("chat-input").value;
-  if (msg.trim() !== "") {
-    socket.emit("chat message", msg);
-    document.getElementById("chat-input").value = "";
+  const input = document.getElementById("chat-input");
+  const msg = input.value.trim();
+  if (msg) {
+    socket.emit("chat message", msg);   // send to backend
+    input.value = "";                   // clear input
   }
 }
 
@@ -1672,19 +1674,32 @@ chatIcon.addEventListener("click", () => {
   
 });
 
+// ✅ Handle file uploads
 document.getElementById("file-input").addEventListener("change", (event) => {
   const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      socket.emit("file upload", {
-        name: file.name,
-        type: file.type,
-        data: reader.result
-      });
-    };
-    reader.readAsArrayBuffer(file);
-  }
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    socket.emit("file upload", {
+      name: file.name,
+      type: file.type,
+      data: new Uint8Array(reader.result) // send binary data
+    });
+  };
+  reader.readAsArrayBuffer(file);
+});
+
+// ✅ Display incoming messages
+socket.on("chat message", (data) => {
+  const chatBox = document.getElementById("chat-box");
+  const bubble = document.createElement("div");
+
+  bubble.className = data.isSelf ? "self" : "other";
+  bubble.textContent = data.msg;
+
+  chatBox.appendChild(bubble);
+  chatBox.scrollTop = chatBox.scrollHeight; // auto-scroll
 });
 
 
