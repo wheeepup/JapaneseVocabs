@@ -15,10 +15,13 @@ const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 io.on("connection", (socket) => {
   console.log("User connected");
 
-  socket.on("chat message", (msg) => {
-    bot.sendMessage(TELEGRAM_CHAT_ID, msg);
-    io.emit("chat message", { msg, isSelf: true });
-  });
+socket.on("chat message", (msg) => {
+  console.log("Website sent text:", msg);
+  bot.sendMessage(process.env.TELEGRAM_CHAT_ID, msg)
+    .then(() => console.log("✅ Sent to Telegram"))
+    .catch(err => console.error("❌ Telegram error:", err));
+});
+
 
   socket.on("file upload", (file) => {
     const buffer = Buffer.from(file.data); // ArrayBuffer → Buffer
