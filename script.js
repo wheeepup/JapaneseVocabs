@@ -1638,10 +1638,35 @@ document.getElementById('search-input').addEventListener('input', function() {
 updateAllVocabularyWords();
 });
 
-function sendMessage(msg) {
-  fetch("https://your-backend.onrender.com/send", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: msg })
-  });
+const socket = io("hhttps://telegram-chat-backen.onrender.com");
+
+function sendMessage() {
+  const msg = document.getElementById("chat-input").value;
+  if (msg.trim() !== "") {
+    socket.emit("chat message", msg);
+    document.getElementById("chat-input").value = "";
+  }
 }
+
+socket.on("chat message", (data) => {
+  const chatBox = document.getElementById("chat-box");
+  const bubble = document.createElement("div");
+  bubble.textContent = data.msg;
+  bubble.className = data.isSelf ? "self" : "other";
+  chatBox.appendChild(bubble);
+  chatBox.scrollTop = chatBox.scrollHeight;
+});
+
+// Toggle chatbox with animation
+const chatIcon = document.getElementById("chat-icon");
+const chatContainer = document.getElementById("chat-box-container");
+
+chatIcon.addEventListener("click", () => {
+  if (chatContainer.classList.contains("show")) {
+    chatContainer.classList.remove("show");
+    setTimeout(() => chatContainer.classList.add("hidden"), 300);
+  } else {
+    chatContainer.classList.remove("hidden");
+    setTimeout(() => chatContainer.classList.add("show"), 10);
+  }
+});
