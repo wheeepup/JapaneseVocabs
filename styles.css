@@ -345,42 +345,76 @@ header h1 {
   overflow-y: auto;
   background: #1e1e1e;
 }
+/* Your own messages (pastel pink bubble) */
+.self, .other {
+  display: block;          /* ensures each bubble takes full line */
+  max-width: 80%;          /* still keeps them narrow */
+  margin: 5px 0;           /* vertical spacing */
+  padding: 10px;
+  border-radius: 12px;
+}
+
 .self {
+  background: #ffc0cb;     /* pastel pink */
+  color: #121212;
   text-align: right;
-  background: #1e90ff;
-  color: #fff;
-  margin: 5px;
-  padding: 8px;
-  border-radius: 8px;
+  margin-left: auto;       /* push to right side */
 }
+
 .other {
+  background: #444;        /* plain gray */
+  color: #f1f1f1;
   text-align: left;
-  background: #ff6f61;
-  color: #fff;
-  margin: 5px;
-  padding: 8px;
-  border-radius: 8px;
+  margin-right: auto;      /* push to left side */
 }
+
+
+.self::before {
+  content: "You";
+  font-size: 0.8rem;
+  color: #888;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.other::before {
+  content: "Stranger";
+  font-size: 0.8rem;
+  color: #888;
+  display: block;
+  margin-bottom: 2px;
+}
+
 
 /* Input + button */
 .chat-input-container {
   display: flex;
+  align-items: center;
   border-top: 1px solid #333;
   background: #121212;
+  padding: 5px;
 }
+
 #chat-input {
+  flex: 1;
   border: none;
   background: #1e1e1e;
   color: #f1f1f1;
   padding: 10px;
-  flex: 1;
+  margin-right: 5px;
 }
+
 #chat-input::placeholder { color: #888; }
+#file-input {
+  color: #f1f1f1;
+  margin-right: 5px;
+}
+
 #chat-box-container button {
   border: none;
   background: #1e90ff;
   color: white;
-  padding: 10px;
+  padding: 10px 15px;
   cursor: pointer;
   transition: background 0.3s ease;
 }

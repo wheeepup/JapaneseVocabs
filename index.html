@@ -135,14 +135,26 @@
     </div>
 
     <!-- Floating Chat Icon -->
+    <!-- Floating Chat Icon -->
     <div id="chat-icon">💬</div>
 
     <!-- Hidden Chat Box -->
-    <div id="chat-box-container" class="hidden">
-    <div id="chat-box"></div>
-    <input id="chat-input" placeholder="Type a message...">
-    <button onclick="sendMessage()">Send</button>
+        <div id="chat-box-container" class="hidden">
+        <div id="chat-box"></div>
+        <div class="chat-input-container">
+            <input id="chat-input" placeholder="Type a message...">
+            
+            <!-- Hidden file input -->
+            <input type="file" id="file-input" hidden>
+            
+            <!-- 📎 Attachment icon -->
+            <label for="file-input" class="attachment-icon">📎</label>
+            
+            <button onclick="sendMessage()">Send</button>
+        </div>
     </div>
+
+
     
 </body>
 </html>

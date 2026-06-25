@@ -1669,6 +1669,22 @@ chatIcon.addEventListener("click", () => {
     chatContainer.classList.remove("hidden");
     setTimeout(() => chatContainer.classList.add("show"), 10);
   }
+  
+});
+
+document.getElementById("file-input").addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      socket.emit("file upload", {
+        name: file.name,
+        type: file.type,
+        data: reader.result
+      });
+    };
+    reader.readAsArrayBuffer(file);
+  }
 });
 
 
