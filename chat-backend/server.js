@@ -7,8 +7,8 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-const TELEGRAM_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN";
-const TELEGRAM_CHAT_ID = "YOUR_GROUP_CHAT_ID"; // numeric ID
+const TELEGRAM_TOKEN = "8914107820:AAFhd7Gw4yMDZdzsVehu1s7DSq87u20rEb8";
+const TELEGRAM_CHAT_ID = "5253636291"; // numeric ID
 const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 
 // ✅ Website → Telegram
