@@ -1650,30 +1650,6 @@ function sendMessage() {
   }
 }
 
-socket.on("chat message", (data) => {
-  const chatBox = document.getElementById("chat-box");
-  const bubble = document.createElement("div");
-  bubble.textContent = data.msg;
-  bubble.className = data.isSelf ? "self" : "other";
-  chatBox.appendChild(bubble);
-  chatBox.scrollTop = chatBox.scrollHeight;
-});
-
-const chatIcon = document.getElementById("chat-icon");
-const chatContainer = document.getElementById("chat-box-container");
-
-// 👉 Click to toggle (desktop + mobile)
-chatIcon.addEventListener("click", () => {
-  if (chatContainer.classList.contains("show")) {
-    chatContainer.classList.remove("show");
-    setTimeout(() => chatContainer.classList.add("hidden"), 300);
-  } else {
-    chatContainer.classList.remove("hidden");
-    setTimeout(() => chatContainer.classList.add("show"), 10);
-  }
-  
-});
-
 // ✅ Handle file uploads
 document.getElementById("file-input").addEventListener("change", (event) => {
   const file = event.target.files[0];
@@ -1695,14 +1671,57 @@ socket.on("chat message", (data) => {
   const chatBox = document.getElementById("chat-box");
   const bubble = document.createElement("div");
 
-  bubble.className = data.isSelf ? "self" : "other";
-  bubble.textContent = data.msg;
+  // Case 1: plain string (text)
+  if (typeof data === "string") {
+    bubble.textContent = data;
+    bubble.className = "other";
+  }
+
+  // Case 2: object with type
+  else if (typeof data === "object") {
+    if (data.type === "photo") {
+      const img = document.createElement("img");
+      img.src = data.url;
+      img.alt = "Telegram photo";
+      img.style.maxWidth = "200px";
+      bubble.appendChild(img);
+      bubble.className = "other";
+    }
+    else if (data.type === "document") {
+      const link = document.createElement("a");
+      link.href = data.url;
+      link.textContent = `📎 ${data.name}`;
+      link.target = "_blank";
+      bubble.appendChild(link);
+      bubble.className = "other";
+    }
+    else if (data.msg) {
+      bubble.textContent = data.msg;
+      bubble.className = data.isSelf ? "self" : "other";
+    }
+  }
 
   chatBox.appendChild(bubble);
   chatBox.scrollTop = chatBox.scrollHeight; // auto-scroll
 });
 
-socket.on("chat id", (id) => {
-  console.log("Telegram Chat ID:", id); // shows in browser console
+// ✅ Toggle chatbox (desktop + mobile)
+const chatIcon = document.getElementById("chat-icon");
+const chatContainer = document.getElementById("chat-box-container");
+
+chatIcon.addEventListener("click", () => {
+  if (chatContainer.classList.contains("show")) {
+    chatContainer.classList.remove("show");
+    setTimeout(() => chatContainer.classList.add("hidden"), 300);
+  } else {
+    chatContainer.classList.remove("hidden");
+    setTimeout(() => chatContainer.classList.add("show"), 10);
+  }
 });
+
+// ✅ Debug: show chat ID in console
+socket.on("chat id", (id) => {
+  console.log("Telegram Chat ID:", id);
+});
+
 
