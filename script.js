@@ -1666,18 +1666,18 @@ document.getElementById("file-input").addEventListener("change", (event) => {
   reader.readAsArrayBuffer(file);
 });
 
-// ✅ Display incoming messages
+// ✅ Display incoming messages (text + media)
 socket.on("chat message", (data) => {
   const chatBox = document.getElementById("chat-box");
   const bubble = document.createElement("div");
 
-  // Case 1: plain string (text)
+  // Case 1: plain string (Telegram text)
   if (typeof data === "string") {
     bubble.textContent = data;
     bubble.className = "other";
   }
 
-  // Case 2: object with type
+  // Case 2: object with type (Telegram media or website messages)
   else if (typeof data === "object") {
     if (data.type === "photo") {
       const img = document.createElement("img");
@@ -1696,6 +1696,7 @@ socket.on("chat message", (data) => {
       bubble.className = "other";
     }
     else if (data.msg) {
+      // Website’s own messages
       bubble.textContent = data.msg;
       bubble.className = data.isSelf ? "self" : "other";
     }
