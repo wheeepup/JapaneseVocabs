@@ -1645,19 +1645,17 @@ function sendMessage() {
   const input = document.getElementById("chat-input");
   const msg = input.value.trim();
   if (msg) {
-    // Show immediately in chat UI
-    addBubble({ msg, isSelf: true });
-
-    // Send to backend
-    socket.emit("chat message", msg);
-    input.value = "";
+    addBubble({ msg, isSelf: true });   // show immediately
+    socket.emit("chat message", msg);   // send to backend
+    input.value = "";                   // clear input
   }
 }
 
-// ✅ Handle Enter key press
-document.getElementById("chat-input").addEventListener("keydown", (event) => {
-  if (event.key === "Enter" && !event.shiftKey) {
-    event.preventDefault(); // prevent newline
+// ✅ Handle Enter key press for <input>
+const chatInput = document.getElementById("chat-input");
+chatInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault(); // stop default form submission
     sendMessage();
   }
 });
@@ -1667,7 +1665,6 @@ document.getElementById("file-input").addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (!file) return;
 
-  // Show immediately in chat UI
   addBubble({ msg: `📎 ${file.name}`, isSelf: true });
 
   const reader = new FileReader();
@@ -1675,7 +1672,7 @@ document.getElementById("file-input").addEventListener("change", (event) => {
     socket.emit("file upload", {
       name: file.name,
       type: file.type,
-      data: new Uint8Array(reader.result) // send binary data
+      data: new Uint8Array(reader.result)
     });
   };
   reader.readAsArrayBuffer(file);
@@ -1690,9 +1687,7 @@ socket.on("chat message", (data) => {
 socket.on("clear typing", () => {
   const chatBox = document.getElementById("chat-box");
   const typingBubble = chatBox.querySelector(".typing-indicator");
-  if (typingBubble) {
-    typingBubble.remove();
-  }
+  if (typingBubble) typingBubble.remove();
 });
 
 // ✅ Helper: render bubbles
@@ -1735,7 +1730,7 @@ function addBubble(data) {
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// ✅ Toggle chatbox (desktop + mobile)
+// ✅ Toggle chatbox
 const chatIcon = document.getElementById("chat-icon");
 const chatContainer = document.getElementById("chat-box-container");
 
@@ -1749,8 +1744,9 @@ chatIcon.addEventListener("click", () => {
   }
 });
 
-// ✅ Debug: show chat ID in console
+// ✅ Debug
 socket.on("chat id", (id) => {
   console.log("Telegram Chat ID:", id);
 });
+
 
