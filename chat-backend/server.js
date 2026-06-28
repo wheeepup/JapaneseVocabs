@@ -1,9 +1,9 @@
 // server.js
 
-const express = require("express");
-const http = require("http");
-const { Server } = require("socket.io");
-const TelegramBot = require("node-telegram-bot-api");
+import express from "express";
+import http from "http";
+import { Server } from "socket.io";
+import TelegramBot from "node-telegram-bot-api";
 
 const app = express();
 const server = http.createServer(app);
