@@ -345,30 +345,32 @@ header h1 {
   overflow-y: auto;
   background: #1e1e1e;
 }
-/* Your own messages (pastel pink bubble) */
+
+/* Message bubbles */
 .self, .other {
-  display: block;          /* ensures each bubble takes full line */
-  max-width: 80%;          /* still keeps them narrow */
-  margin: 5px 0;           /* vertical spacing */
+  display: block;
+  max-width: 80%;
+  margin: 5px 0;
   padding: 10px;
   border-radius: 12px;
+  word-wrap: break-word;
 }
 
 .self {
   background: #ffc0cb;     /* pastel pink */
   color: #121212;
   text-align: right;
-  margin-left: auto;       /* push to right side */
+  margin-left: auto;
 }
 
 .other {
   background: #444;        /* plain gray */
   color: #f1f1f1;
   text-align: left;
-  margin-right: auto;      /* push to left side */
+  margin-right: auto;
 }
 
-
+/* Labels above bubbles */
 .self::before {
   content: "You";
   font-size: 0.8rem;
@@ -376,7 +378,6 @@ header h1 {
   display: block;
   margin-bottom: 2px;
 }
-
 .other::before {
   content: "Stranger";
   font-size: 0.8rem;
@@ -385,6 +386,53 @@ header h1 {
   margin-bottom: 2px;
 }
 
+/* Images inside bubbles */
+.self img, .other img {
+  max-width: 200px;
+  border-radius: 8px;
+  display: block;
+  margin-top: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* File links inside bubbles */
+.self a, .other a {
+  color: #1e90ff;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 4px;
+}
+.self a:hover, .other a:hover {
+  text-decoration: underline;
+  color: #ff6f61;
+}
+
+/* Typing indicator */
+.typing-indicator {
+  display: inline-block;
+  background: #444;
+  color: #f1f1f1;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin: 5px 0;
+}
+.typing-indicator span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  background: #f1f1f1;
+  border-radius: 50%;
+  animation: blink 1.4s infinite both;
+}
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink {
+  0% { opacity: 0.2; }
+  20% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
 
 /* Input + button */
 .chat-input-container {
@@ -394,7 +442,6 @@ header h1 {
   background: #121212;
   padding: 5px;
 }
-
 #chat-input {
   flex: 1;
   border: none;
@@ -403,13 +450,11 @@ header h1 {
   padding: 10px;
   margin-right: 5px;
 }
-
 #chat-input::placeholder { color: #888; }
 #file-input {
   color: #f1f1f1;
   margin-right: 5px;
 }
-
 #chat-box-container button {
   border: none;
   background: #1e90ff;
@@ -430,60 +475,4 @@ header h1 {
     bottom: 80px;
     max-height: 60%;
   }
-}
-
-/* Images inside chat bubbles */
-.self img, .other img {
-  max-width: 200px;
-  border-radius: 8px;
-  display: block;
-  margin-top: 4px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-}
-
-/* File links inside bubbles */
-.self a, .other a {
-  color: #1e90ff;          /* blue accent for links */
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  margin-top: 4px;
-}
-
-.self a:hover, .other a:hover {
-  text-decoration: underline;
-  color: #ff6f61;          /* coral accent on hover */
-}
-
-/* Typing indicator (three dots animation) */
-.typing-indicator {
-  display: inline-block;
-  background: #444;
-  color: #f1f1f1;
-  border-radius: 12px;
-  padding: 8px 12px;
-  margin: 5px 0;
-}
-
-.typing-indicator span {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin: 0 2px;
-  background: #f1f1f1;
-  border-radius: 50%;
-  animation: blink 1.4s infinite both;
-}
-
-.typing-indicator span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.typing-indicator span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes blink {
-  0% { opacity: 0.2; }
-  20% { opacity: 1; }
-  100% { opacity: 0.2; }
 }
