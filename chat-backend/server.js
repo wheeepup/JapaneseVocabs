@@ -4,6 +4,7 @@ import express from "express";
 import http from "http";
 import { Server } from "socket.io";
 import TelegramBot from "node-telegram-bot-api";
+import fetch from "node-fetch"; // needed to download files
 
 const app = express();
 const server = http.createServer(app);
@@ -12,7 +13,7 @@ const io = new Server(server);
 // 🔑 Bot token from BotFather
 const TELEGRAM_TOKEN = "8914107820:AAFhd7Gw4yMDZdzsVehu1s7DSq87u20rEb8";
 
-// 🔑 Your actual group chat ID
+// 🔑 Your actual group chat ID (from logs)
 const TELEGRAM_CHAT_ID = -1004385768325;
 
 // ✅ Initialize bot (no polling)
@@ -33,7 +34,6 @@ io.on("connection", (socket) => {
 
   // Text messages
   socket.on("chat message", (msg) => {
-    console.log("Website sent text:", msg);
     bot.sendMessage(TELEGRAM_CHAT_ID, msg)
       .then(() => console.log("✅ Sent to Telegram"))
       .catch(err => console.error("❌ Telegram error:", err));
@@ -41,34 +41,42 @@ io.on("connection", (socket) => {
 
   // File uploads
   socket.on("file upload", (file) => {
-    console.log("Website sent file:", file.name, file.type);
     const buffer = Buffer.from(file.data);
-
     let sendPromise;
+
     if (file.type.startsWith("image/")) {
       sendPromise = bot.sendPhoto(TELEGRAM_CHAT_ID, buffer, { caption: file.name });
     } else {
       sendPromise = bot.sendDocument(TELEGRAM_CHAT_ID, buffer, { caption: file.name });
     }
 
-    sendPromise
-      .then(() => console.log("✅ File sent to Telegram"))
-      .catch(err => console.error("❌ Telegram error:", err));
+    sendPromise.catch(err => console.error("❌ Telegram error:", err));
   });
 });
 
 // ✅ Telegram → Website
-bot.on("message", (msg) => {
+bot.on("message", async (msg) => {
   console.log("Telegram message received:", msg);
 
+  // Text
   if (msg.text) {
-    io.emit("chat message", { msg: msg.text, isSelf: false });
+    io.emit("chat message", msg.text);
   }
+
+  // Photo
   if (msg.photo) {
-    io.emit("chat message", { msg: "[Photo received]", isSelf: false });
+    const fileId = msg.photo[msg.photo.length - 1].file_id; // largest size
+    const file = await bot.getFile(fileId);
+    const fileUrl = `https://api.telegram.org/file/bot${TELEGRAM_TOKEN}/${file.file_path}`;
+    io.emit("chat message", { type: "photo", url: fileUrl });
   }
+
+  // Document
   if (msg.document) {
-    io.emit("chat message", { msg: `[File: ${msg.document.file_name}]`, isSelf: false });
+    const fileId = msg.document.file_id;
+    const file = await bot.getFile(fileId);
+    const fileUrl = `https://api.telegram.org/file/bot${TELEGRAM_TOKEN}/${file.file_path}`;
+    io.emit("chat message", { type: "document", name: msg.document.file_name, url: fileUrl });
   }
 });
 
@@ -77,8 +85,3 @@ server.listen(3000, () => console.log("Server running on port 3000"));
 
 // Quick test message
 bot.sendMessage(TELEGRAM_CHAT_ID, "Test message from backend");
-
-bot.on("message", (msg) => {
-  console.log("Chat ID:", msg.chat.id, "Type:", msg.chat.type);
-});
-
