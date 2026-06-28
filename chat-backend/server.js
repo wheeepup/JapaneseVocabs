@@ -13,7 +13,7 @@ const io = new Server(server);
 const TELEGRAM_TOKEN = "8914107820:AAFhd7Gw4yMDZdzsVehu1s7DSq87u20rEb8";
 
 // 🔑 Your actual group chat ID
-const TELEGRAM_CHAT_ID = -5253636291;
+const TELEGRAM_CHAT_ID = -1004385768325;
 
 // ✅ Initialize bot (no polling)
 const bot = new TelegramBot(TELEGRAM_TOKEN);
@@ -77,3 +77,8 @@ server.listen(3000, () => console.log("Server running on port 3000"));
 
 // Quick test message
 bot.sendMessage(TELEGRAM_CHAT_ID, "Test message from backend");
+
+bot.on("message", (msg) => {
+  console.log("Chat ID:", msg.chat.id, "Type:", msg.chat.type);
+});
+
