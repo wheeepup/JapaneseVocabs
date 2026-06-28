@@ -1640,20 +1640,27 @@ updateAllVocabularyWords();
 
 const socket = io("https://telegram-chat-backen.onrender.com");
 
-// ✅ Send text messages
+// ✅ Send text messages (optimistic render)
 function sendMessage() {
   const input = document.getElementById("chat-input");
   const msg = input.value.trim();
   if (msg) {
-    socket.emit("chat message", msg);   // send to backend
-    input.value = "";                   // clear input
+    // Show immediately in chat UI
+    addBubble({ msg, isSelf: true });
+
+    // Send to backend
+    socket.emit("chat message", msg);
+    input.value = "";
   }
 }
 
-// ✅ Handle file uploads
+// ✅ Handle file uploads (optimistic render)
 document.getElementById("file-input").addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (!file) return;
+
+  // Show immediately in chat UI
+  addBubble({ msg: `📎 ${file.name}`, isSelf: true });
 
   const reader = new FileReader();
   reader.onload = () => {
@@ -1666,8 +1673,13 @@ document.getElementById("file-input").addEventListener("change", (event) => {
   reader.readAsArrayBuffer(file);
 });
 
-// ✅ Display incoming messages (text + media)
+// ✅ Display incoming messages (Telegram → Website + backend echo)
 socket.on("chat message", (data) => {
+  addBubble(data);
+});
+
+// ✅ Helper: render bubbles
+function addBubble(data) {
   const chatBox = document.getElementById("chat-box");
   const bubble = document.createElement("div");
 
@@ -1696,7 +1708,6 @@ socket.on("chat message", (data) => {
       bubble.className = "other";
     }
     else if (data.msg) {
-      // Website’s own messages
       bubble.textContent = data.msg;
       bubble.className = data.isSelf ? "self" : "other";
     }
@@ -1704,7 +1715,7 @@ socket.on("chat message", (data) => {
 
   chatBox.appendChild(bubble);
   chatBox.scrollTop = chatBox.scrollHeight; // auto-scroll
-});
+}
 
 // ✅ Toggle chatbox (desktop + mobile)
 const chatIcon = document.getElementById("chat-icon");
@@ -1724,5 +1735,3 @@ chatIcon.addEventListener("click", () => {
 socket.on("chat id", (id) => {
   console.log("Telegram Chat ID:", id);
 });
-
-
