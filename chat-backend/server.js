@@ -5,10 +5,23 @@ import http from "http";
 import { Server } from "socket.io";
 import TelegramBot from "node-telegram-bot-api";
 import fetch from "node-fetch";
+import cors from "cors";
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+
+app.use(cors({
+  origin: "https://jp-vocabs.netlify.app",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+
+const io = new Server(server, {
+  cors: {
+    origin: "https://jp-vocabs.netlify.app",
+    methods: ["GET", "POST"]
+  }
+});
 
 // 🔑 Bot token from BotFather
 const TELEGRAM_TOKEN = "8914107820:AAFhd7Gw4yMDZdzsVehu1s7DSq87u20rEb8";
