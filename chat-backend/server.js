@@ -82,9 +82,9 @@ bot.on("message", async (msg) => {
   console.log("Telegram message received:", msg);
 
   // Text
-  if (msg.text) {
-    io.emit("chat message", msg.text);
-  }
+  // if (msg.text) {
+  //  io.emit("chat message", msg.text);
+  // }
 
   // Photo
   if (msg.photo) {
