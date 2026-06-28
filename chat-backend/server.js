@@ -4,7 +4,7 @@ import express from "express";
 import http from "http";
 import { Server } from "socket.io";
 import TelegramBot from "node-telegram-bot-api";
-import fetch from "node-fetch"; // needed to download files
+import fetch from "node-fetch";
 
 const app = express();
 const server = http.createServer(app);
