@@ -10,7 +10,6 @@ import cors from "cors";
 const app = express();
 const server = http.createServer(app);
 
-// ✅ Allow Netlify domain
 app.use(cors({
   origin: "https://jp-vocabs.netlify.app", // replace with your exact Netlify domain
   methods: ["GET", "POST"],
@@ -42,19 +41,15 @@ app.post(`/${TELEGRAM_TOKEN}`, express.json(), (req, res) => {
   res.sendStatus(200);
 });
 
-// ✅ Website → Telegram (with echo back to website)
+// ✅ Website → Telegram (no echo back, frontend handles optimistic render)
 io.on("connection", (socket) => {
   console.log("User connected");
 
   // Text messages
   socket.on("chat message", (msg) => {
-    // Send to Telegram
     bot.sendMessage(TELEGRAM_CHAT_ID, msg)
       .then(() => console.log("✅ Sent to Telegram"))
       .catch(err => console.error("❌ Telegram error:", err));
-
-    // Echo back to website immediately
-    io.emit("chat message", { msg, isSelf: true });
   });
 
   // File uploads
@@ -68,12 +63,7 @@ io.on("connection", (socket) => {
       sendPromise = bot.sendDocument(TELEGRAM_CHAT_ID, buffer, { caption: file.name });
     }
 
-    sendPromise
-      .then(() => {
-        // Echo file back to website
-        io.emit("chat message", { msg: `📎 ${file.name}`, isSelf: true });
-      })
-      .catch(err => console.error("❌ Telegram error:", err));
+    sendPromise.catch(err => console.error("❌ Telegram error:", err));
   });
 });
 
@@ -81,10 +71,18 @@ io.on("connection", (socket) => {
 bot.on("message", async (msg) => {
   console.log("Telegram message received:", msg);
 
+  // Emit typing indicator before showing the actual message
+  io.emit("chat message", { type: "typing" });
+
   // Text
-  // if (msg.text) {
-  //  io.emit("chat message", msg.text);
-  // }
+  if (msg.text) {
+    io.emit("chat message", msg.text);
+  }
+  
+  // Clear typing after 2 seconds (in case no message arrives)
+  setTimeout(() => {
+    io.emit("clear typing");
+  }, 2000);
 
   // Photo
   if (msg.photo) {
