@@ -15,7 +15,17 @@ const TELEGRAM_TOKEN = "8914107820:AAFhd7Gw4yMDZdzsVehu1s7DSq87u20rEb8";
 // 🔑 Your actual group chat ID
 const TELEGRAM_CHAT_ID = -5253636291;
 
-const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
+// ✅ Initialize bot (no polling)
+const bot = new TelegramBot(TELEGRAM_TOKEN);
+
+// ✅ Set webhook (replace with your Render domain)
+bot.setWebHook(`https://telegram-chat-backen.onrender.com/${TELEGRAM_TOKEN}`);
+
+// ✅ Express route to handle Telegram updates
+app.post(`/${TELEGRAM_TOKEN}`, express.json(), (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
 
 // ✅ Website → Telegram
 io.on("connection", (socket) => {
@@ -64,4 +74,6 @@ bot.on("message", (msg) => {
 
 // Start server
 server.listen(3000, () => console.log("Server running on port 3000"));
+
+// Quick test message
 bot.sendMessage(TELEGRAM_CHAT_ID, "Test message from backend");
