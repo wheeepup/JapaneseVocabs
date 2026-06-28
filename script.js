@@ -1654,6 +1654,14 @@ function sendMessage() {
   }
 }
 
+// ✅ Handle Enter key press
+document.getElementById("chat-input").addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault(); // prevent newline
+    sendMessage();
+  }
+});
+
 // ✅ Handle file uploads (optimistic render)
 document.getElementById("file-input").addEventListener("change", (event) => {
   const file = event.target.files[0];
@@ -1673,9 +1681,18 @@ document.getElementById("file-input").addEventListener("change", (event) => {
   reader.readAsArrayBuffer(file);
 });
 
-// ✅ Display incoming messages (Telegram → Website + backend echo)
+// ✅ Display incoming messages
 socket.on("chat message", (data) => {
   addBubble(data);
+});
+
+// ✅ Remove typing indicator
+socket.on("clear typing", () => {
+  const chatBox = document.getElementById("chat-box");
+  const typingBubble = chatBox.querySelector(".typing-indicator");
+  if (typingBubble) {
+    typingBubble.remove();
+  }
 });
 
 // ✅ Helper: render bubbles
@@ -1683,13 +1700,10 @@ function addBubble(data) {
   const chatBox = document.getElementById("chat-box");
   const bubble = document.createElement("div");
 
-  // Case 1: plain string (Telegram text)
   if (typeof data === "string") {
     bubble.textContent = data;
     bubble.className = "other";
   }
-
-  // Case 2: object with type (Telegram media or website messages)
   else if (typeof data === "object") {
     if (data.type === "photo") {
       const img = document.createElement("img");
@@ -1707,6 +1721,10 @@ function addBubble(data) {
       bubble.appendChild(link);
       bubble.className = "other";
     }
+    else if (data.type === "typing") {
+      bubble.className = "typing-indicator";
+      bubble.innerHTML = "<span></span><span></span><span></span>";
+    }
     else if (data.msg) {
       bubble.textContent = data.msg;
       bubble.className = data.isSelf ? "self" : "other";
@@ -1714,7 +1732,7 @@ function addBubble(data) {
   }
 
   chatBox.appendChild(bubble);
-  chatBox.scrollTop = chatBox.scrollHeight; // auto-scroll
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 // ✅ Toggle chatbox (desktop + mobile)
@@ -1735,3 +1753,4 @@ chatIcon.addEventListener("click", () => {
 socket.on("chat id", (id) => {
   console.log("Telegram Chat ID:", id);
 });
+
