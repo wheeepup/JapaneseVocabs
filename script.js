@@ -1640,6 +1640,8 @@ updateAllVocabularyWords();
 
 const socket = io("https://telegram-chat-backen.onrender.com");
 
+let unreadCount = 0;
+
 // ✅ Send text messages (optimistic render)
 function sendMessage() {
   const input = document.getElementById("chat-input");
@@ -1681,6 +1683,16 @@ document.getElementById("file-input").addEventListener("change", (event) => {
 // ✅ Display incoming messages
 socket.on("chat message", (data) => {
   addBubble(data);
+
+  // Increment unread counter if chatbox is closed
+  const chatContainer = document.getElementById("chat-box-container");
+  if (!chatContainer.classList.contains("show")) {
+    unreadCount++;
+    document.title = `(${unreadCount}) New message!`;
+    const chatIcon = document.getElementById("chat-icon");
+    chatIcon.classList.add("has-message");
+    chatIcon.setAttribute("data-count", unreadCount);
+  }
 });
 
 // ✅ Remove typing indicator
@@ -1730,17 +1742,25 @@ function addBubble(data) {
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// ✅ Toggle chatbox
+// ✅ Toggle chatbox with unread reset
 const chatIcon = document.getElementById("chat-icon");
 const chatContainer = document.getElementById("chat-box-container");
 
 chatIcon.addEventListener("click", () => {
   if (chatContainer.classList.contains("show")) {
+    // Close
     chatContainer.classList.remove("show");
-    setTimeout(() => chatContainer.classList.add("hidden"), 300);
+    chatContainer.classList.add("hidden");
   } else {
+    // Open
     chatContainer.classList.remove("hidden");
-    setTimeout(() => chatContainer.classList.add("show"), 10);
+    chatContainer.classList.add("show");
+
+    // Clear unread counter when opened
+    unreadCount = 0;
+    document.title = "Japanese Vocabulary Practice"; // normal title
+    chatIcon.classList.remove("has-message");
+    chatIcon.removeAttribute("data-count");
   }
 });
 
@@ -1748,5 +1768,6 @@ chatIcon.addEventListener("click", () => {
 socket.on("chat id", (id) => {
   console.log("Telegram Chat ID:", id);
 });
+
 
 

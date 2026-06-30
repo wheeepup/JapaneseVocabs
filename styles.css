@@ -294,24 +294,42 @@ header h1 {
 }
 
 /* Floating chat icon */
+/* Black chat icon */
 #chat-icon {
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #1e90ff; /* blue accent */
-  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   font-size: 24px;
-  padding: 15px;
+}
+
+/* Badge counter */
+#chat-icon.has-message::after {
+  content: attr(data-count);
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff4081;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
   border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-  transition: transform 0.2s ease, background 0.3s ease;
-  z-index: 1000;
+  padding: 2px 6px;
 }
-#chat-icon:hover {
+
+/* #chat-icon:hover {
   transform: scale(1.1);
-  background: #ff6f61; /* coral accent */
-}
+  background: #ff6f61; /* coral accent
+}*/
 
 /* Chat box popup */
 #chat-box-container {
@@ -357,8 +375,8 @@ header h1 {
 }
 
 .self {
-  background: #ffc0cb;     /* pastel pink */
-  color: #121212;
+  background: #74585d;     /* pastel pink */
+  color: #ffffff;
   text-align: right;
   margin-left: auto;
 }
@@ -475,4 +493,17 @@ header h1 {
     bottom: 80px;
     max-height: 60%;
   }
+}
+
+#chat-icon.has-message::after {
+  content: attr(data-count);
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff4081;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
 }
