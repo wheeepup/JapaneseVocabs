@@ -296,7 +296,7 @@ header h1 {
 /* Floating chat icon */
 /* Black chat icon */
 #chat-icon {
-  background-color: black;
+  background-color: #121212;
   color: white;
   border-radius: 50%;
   width: 50px;
